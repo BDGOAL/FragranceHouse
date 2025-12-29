@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance House HK: 2025 Performance Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #fafaf9; /* stone-50 */
+            color: #44403c; /* stone-700 */
+        }
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .mobile-preview {
+            max-width: 260px;
+            border: 10px solid #1c1917;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            background: #e5ddd5; /* WhatsApp chat background color */
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+        }
+        .mobile-preview:hover {
+            transform: translateY(-5px);
+        }
+        .whatsapp-header {
+            background-color: #075e54;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .whatsapp-body {
+            padding: 4px;
+        }
+        .campaign-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals (Stone/Warm Grey) with Muted Gold/Sage/Terracotta accents -->
+    <!-- Application Structure Plan:
+         1. Hero/Executive Summary: Immediate high-level KPIs showing the "Quality vs Quantity" shift.
+         2. Annual Performance Explorer: A main bar chart comparing 2024 vs 2025 revenue.
+         3. December Deep Dive: Specific focus on the recent month with category breakdown.
+         4. WhatsApp Campaign Analyzer: Comparative view with visual previews of Campaign #1 and #2 using external GitHub URLs.
+         5. 2026 Strategic Forecast: Interactive projection chart with scenario toggles.
+         6. Action Plan: Timeline of Q1 2026 priorities.
+    -->
+    <!-- Visualization & Content Choices:
+         1. Annual Revenue Chart: Bar Chart (Chart.js) with dynamic coloring based on YoY growth.
+         2. Metric Cards: High-impact KPI displays.
+         3. December Product Mix: Doughnut Chart for composition analysis.
+         4. WhatsApp Visuals: Responsive mobile mockups with "object-fit" logic removed to ensure full image visibility.
+         5. 2026 Projections: Multi-line Chart for scenario modeling.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-stone-900 text-stone-100 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="serif text-xl font-bold tracking-wider">Fragrance House HK</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#executive-summary" class="hover:bg-stone-700 px-3 py-2 rounded-md text-sm font-medium">Summary</a>
+                        <a href="#annual-analysis" class="hover:bg-stone-700 px-3 py-2 rounded-md text-sm font-medium">2025 Analysis</a>
+                        <a href="#december-dive" class="hover:bg-stone-700 px-3 py-2 rounded-md text-sm font-medium">December</a>
+                        <a href="#whatsapp-strategy" class="hover:bg-stone-700 px-3 py-2 rounded-md text-sm font-medium">Marketing</a>
+                        <a href="#forecast-2026" class="hover:bg-stone-700 px-3 py-2 rounded-md text-sm font-medium">2026 Forecast</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Header -->
+        <header class="text-center space-y-2 mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-stone-800">2025 Annual Performance Report</h1>
+            <p class="text-stone-500 text-lg">Analysis Period: Jan 1 - Dec 29, 2025 vs 2024</p>
+            <div class="inline-block bg-stone-200 rounded-full px-4 py-1 text-sm font-semibold text-stone-700 mt-2">
+                Strategic Pivot: Volume to Quality
+            </div>
+        </header>
+
+        <!-- Executive Summary Section -->
+        <section id="executive-summary" class="bg-white rounded-xl card-shadow p-6 md:p-8">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-stone-800 mb-2">Executive Summary</h2>
+                <p class="text-stone-600 leading-relaxed">
+                    2025 marked a pivotal transition for Fragrance House HK. We moved from a high-traffic, low-conversion model to a <strong>high-efficiency, quality-focused model</strong>. Despite a nearly 70% drop in raw traffic, revenue grew, margins improved, and customer retention surged.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-stone-50 rounded-lg p-5 border-l-4 border-amber-500">
+                    <p class="text-sm font-bold text-stone-400 uppercase">Annual Revenue</p>
+                    <p class="text-3xl font-bold text-stone-800 mt-1">HKD 193,661</p>
+                    <p class="text-sm text-green-600 font-semibold mt-1">▲ 1.8% YoY</p>
+                </div>
+                <div class="bg-stone-50 rounded-lg p-5 border-l-4 border-blue-400">
+                    <p class="text-sm font-bold text-stone-400 uppercase">Avg Order Value</p>
+                    <p class="text-3xl font-bold text-stone-800 mt-1">HKD 511</p>
+                    <p class="text-sm text-green-600 font-semibold mt-1">▲ 16.7% YoY</p>
+                </div>
+                <div class="bg-stone-50 rounded-lg p-5 border-l-4 border-emerald-500">
+                    <p class="text-sm font-bold text-stone-400 uppercase">Returning Rate</p>
+                    <p class="text-3xl font-bold text-stone-800 mt-1">28.4%</p>
+                    <p class="text-sm text-green-600 font-semibold mt-1">▲ 45% Increase</p>
+                </div>
+                <div class="bg-stone-50 rounded-lg p-5 border-l-4 border-red-400">
+                    <p class="text-sm font-bold text-stone-400 uppercase">Total Traffic</p>
+                    <p class="text-3xl font-bold text-stone-800 mt-1">~5,200/mo</p>
+                    <p class="text-sm text-red-500 font-semibold mt-1">▼ 69.5% YoY</p>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+                <h3 class="font-bold text-amber-800 mb-2">💡 Strategic Insight</h3>
+                <p class="text-amber-900 text-sm">
+                    The core narrative of 2025 is <strong>"Less Traffic, More Value."</strong> We successfully retained loyal customers, but 2026 must focus on rebuilding the top-of-funnel traffic sources.
+                </p>
+            </div>
+        </section>
+
+        <!-- Annual Analysis Section -->
+        <section id="annual-analysis" class="space-y-6">
+            <div class="bg-white rounded-xl card-shadow p-6 md:p-8">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-stone-800 mb-2">2025 vs 2024 Monthly Comparison</h2>
+                    <p class="text-stone-600">
+                        Explore the year's performance month-by-month. Click on any bar in the chart below or use the dropdown to see specific context for each period.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div class="chart-container">
+                            <canvas id="annualRevenueChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-1 bg-stone-50 rounded-lg p-6 border border-stone-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 id="detail-month-title" class="text-xl font-bold text-stone-800 serif">January</h3>
+                                <div id="detail-rating" class="text-amber-500 text-lg">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs text-stone-500 uppercase tracking-wide">Revenue</p>
+                                    <p id="detail-revenue" class="text-lg font-bold text-stone-800">HKD 18,431 (+56.8%)</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-stone-500 uppercase tracking-wide">Key Highlight</p>
+                                    <p id="detail-highlight" class="text-sm text-stone-700">Explosive start. Conversion rate tripled despite traffic dropping.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-stone-200">
+                            <label class="block text-sm font-medium text-stone-700 mb-2">Select Month to Analyze:</label>
+                            <select id="monthSelector" class="block w-full rounded-md border-stone-300 shadow-sm focus:border-stone-500 focus:ring-stone-500 bg-white p-2 text-sm">
+                                <option value="0">January</option>
+                                <option value="1">February</option>
+                                <option value="2">March</option>
+                                <option value="3">April</option>
+                                <option value="4">May</option>
+                                <option value="5">June</option>
+                                <option value="6">July</option>
+                                <option value="7">August</option>
+                                <option value="8">September</option>
+                                <option value="9">October</option>
+                                <option value="10">November</option>
+                                <option value="11">December</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- December Deep Dive -->
+        <section id="december-dive" class="bg-stone-800 text-stone-50 rounded-xl card-shadow p-6 md:p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-4">December 2025 Deep Dive</h2>
+                    <p class="text-stone-300 mb-6 leading-relaxed">
+                        Strong recovery (+18.3% YoY) following a difficult November. Success driven by hybrid product strategy and WhatsApp marketing, overcoming a 22-day stock-out of "White Michelia".
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-stone-700 p-4 rounded-lg">
+                            <p class="text-xs text-stone-400 uppercase">Dec Revenue</p>
+                            <p class="text-2xl font-bold text-white">HKD 19,765</p>
+                            <p class="text-xs text-green-400">▲ 18.3% YoY</p>
+                        </div>
+                        <div class="bg-stone-700 p-4 rounded-lg">
+                            <p class="text-xs text-stone-400 uppercase">Conversion Rate</p>
+                            <p class="text-2xl font-bold text-white">0.60%</p>
+                            <p class="text-xs text-green-400">▲ 131% YoY</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-4">December Product Category Mix</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="decProductChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WhatsApp Marketing Strategy -->
+        <section id="whatsapp-strategy" class="bg-white rounded-xl card-shadow p-6 md:p-8">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-stone-800 mb-2">WhatsApp Marketing Analysis</h2>
+                <p class="text-stone-600">
+                    Compare the two creative approaches below. Campaign #1 utilized a warm, lifestyle-oriented message, while Campaign #2 leveraged a scarcity-focused restock alert to drive significant sales volume.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <!-- Visual Previews -->
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8 items-start bg-stone-100 p-8 rounded-2xl border border-stone-200">
+                    <!-- Preview 1 -->
+                    <div class="flex flex-col items-center space-y-4">
+                        <p class="font-bold text-stone-500 text-sm uppercase tracking-widest">Campaign #1 Preview</p>
+                        <div class="mobile-preview">
+                            <div class="whatsapp-header">Fragrance House HK</div>
+                            <div class="whatsapp-body">
+                                <img src="https://raw.githubusercontent.com/BDGOAL/FragranceHouse/refs/heads/main/camp1.jpg" alt="Campaign #1 Broadcast" class="campaign-img" onerror="this.parentElement.innerHTML='<div class=\'p-8 text-center text-xs text-stone-400 italic\'>Image currently unavailable</div>'">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Preview 2 -->
+                    <div class="flex flex-col items-center space-y-4">
+                        <p class="font-bold text-stone-500 text-sm uppercase tracking-widest">Campaign #2 Preview</p>
+                        <div class="mobile-preview">
+                            <div class="whatsapp-header">Fragrance House HK</div>
+                            <div class="whatsapp-body">
+                                <img src="https://raw.githubusercontent.com/BDGOAL/FragranceHouse/refs/heads/main/Camp2.jpg" alt="Campaign #2 Broadcast" class="campaign-img" onerror="this.parentElement.innerHTML='<div class=\'p-8 text-center text-xs text-stone-400 italic\'>Image currently unavailable</div>'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROI & Insights -->
+                <div class="space-y-6">
+                    <div class="chart-container" style="height: 200px;">
+                        <canvas id="whatsappChart"></canvas>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-stone-300 pl-4 py-3 bg-stone-50 rounded-r-lg">
+                            <h4 class="font-bold text-stone-700 text-sm">#1: Christmas Promotions</h4>
+                            <p class="text-xs text-stone-500 mb-2">ROI: 126-392%</p>
+                            <p class="text-xs text-stone-600 leading-relaxed">Warm and conversational tone. Focus on category-wide discounts and volume offers.</p>
+                        </div>
+
+                        <div class="border-l-4 border-emerald-500 pl-4 py-3 bg-emerald-50 rounded-r-lg">
+                            <h4 class="font-bold text-emerald-800 text-sm">#2: White Michelia Restock</h4>
+                            <p class="text-xs text-emerald-600 mb-2">ROI: 596-828% 🚀</p>
+                            <p class="text-xs text-emerald-800 leading-relaxed">Urgent, scarcity-focused messaging regarding a highly requested bestseller.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2026 Forecast & Strategy -->
+        <section id="forecast-2026" class="space-y-6">
+            <div class="bg-white rounded-xl card-shadow p-6 md:p-8">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-stone-800 mb-2">2026 Strategic Forecast</h2>
+                    <p class="text-stone-600">
+                        We've modeled three growth scenarios. <strong>Moderate Scenario</strong> (+26.5%) is the recommended path, targeting HKD 245k revenue.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-4 mb-6 justify-center">
+                    <button id="toggleConservative" class="px-4 py-2 rounded-full text-sm font-semibold border border-stone-300 bg-stone-100 text-stone-500 hover:bg-stone-200 transition">
+                        Conservative (+9.7%)
+                    </button>
+                    <button id="toggleModerate" class="px-4 py-2 rounded-full text-sm font-semibold bg-emerald-600 text-white shadow-md hover:bg-emerald-700 transition">
+                        Moderate (+26.5%)
+                    </button>
+                    <button id="toggleOptimistic" class="px-4 py-2 rounded-full text-sm font-semibold border border-stone-300 bg-stone-100 text-stone-500 hover:bg-stone-200 transition">
+                        Optimistic (+44.1%)
+                    </button>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="forecastChart"></canvas>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-stone-50 p-5 rounded-lg border-t-4 border-stone-400">
+                        <h4 class="font-bold text-stone-800 text-lg mb-2">January</h4>
+                        <ul class="text-sm text-stone-600 space-y-2">
+                            <li>☐ CNY WhatsApp Campaign</li>
+                            <li>☐ Google Shopping Launch</li>
+                        </ul>
+                    </div>
+                    <div class="bg-stone-50 p-5 rounded-lg border-t-4 border-amber-400">
+                        <h4 class="font-bold text-stone-800 text-lg mb-2">February</h4>
+                        <ul class="text-sm text-stone-600 space-y-2">
+                            <li>☐ Referral Program Launch</li>
+                            <li>☐ SEO Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="bg-stone-50 p-5 rounded-lg border-t-4 border-emerald-400">
+                        <h4 class="font-bold text-stone-800 text-lg mb-2">March</h4>
+                        <ul class="text-sm text-stone-600 space-y-2">
+                            <li>☐ Inventory Safety Stocks</li>
+                            <li>☐ "Spring Refresh" Campaign</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2 font-semibold text-stone-200">Fragrance House HK</p>
+            <p class="text-sm mb-4">Prepared by Sidekick AI Business Analyst</p>
+            <p class="text-xs">Confidential Performance Review • December 29, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        const monthlyData = [
+            { month: 'Jan', rev2024: 11751, rev2025: 18431, rating: '⭐⭐⭐⭐⭐', highlight: 'Explosive start. Conversion tripled. White Michelia Candle strong.', growth: '+56.8%' },
+            { month: 'Feb', rev2024: 11793, rev2025: 13497, rating: '⭐⭐⭐⭐', highlight: 'Traffic down 86% but revenue grew. Car Fragrance Pavilion White Tea dominated.', growth: '+14.5%' },
+            { month: 'Mar', rev2024: 18992, rev2025: 14042, rating: '⭐⭐', highlight: 'Weak performance. Lower spend per customer despite stable orders.', growth: '-26.1%' },
+            { month: 'Apr', rev2024: 11610, rev2025: 9289, rating: '⭐⭐', highlight: 'Yearly low. Seasonal slowdown + 59% traffic drop.', growth: '-20.0%' },
+            { month: 'May', rev2024: 12827, rev2025: 20637, rating: '⭐⭐⭐⭐⭐', highlight: 'Best growth (+60.9%). Summer launch success. High AOV.', growth: '+60.9%' },
+            { month: 'Jun', rev2024: 15719, rev2025: 19104, rating: '⭐⭐⭐⭐', highlight: 'Premium momentum. Returning customers doubled.', growth: '+21.5%' },
+            { month: 'Jul', rev2024: 19951, rev2025: 14775, rating: '⭐⭐', highlight: 'Mid-summer lull. New customer acquisition dropped 50%.', growth: '-25.9%' },
+            { month: 'Aug', rev2024: 19222, rev2025: 17312, rating: '⭐⭐⭐', highlight: 'Recovery begins. Returning customers +180%. Perfume sets stabilized revenue.', growth: '-9.9%' },
+            { month: 'Sep', rev2024: 16591, rev2025: 17942, rating: '⭐⭐⭐⭐', highlight: 'Steady growth. Lime & Frangipani Diffusers gained traction.', growth: '+8.1%' },
+            { month: 'Oct', rev2024: 17872, rev2025: 19244, rating: '⭐⭐⭐⭐', highlight: 'Limited Edition success. Strong retention.', growth: '+7.7%' },
+            { month: 'Nov', rev2024: 17221, rev2025: 9623, rating: '⭐', highlight: 'Strategic failure. Abandoned bestsellers too early.', growth: '-44.1%' },
+            { month: 'Dec', rev2025: 19765, rev2024: 16713, rating: '⭐⭐⭐⭐⭐', highlight: 'Strong recovery. WhatsApp ROI 600%+ saved the quarter.', growth: '+18.3%' }
+        ];
+
+        const forecastLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const conservativeData = [20000, 14500, 15000, 11000, 22000, 20000, 16000, 18000, 19000, 20000, 15000, 22000];
+        const moderateData = [25000, 16000, 16000, 13000, 25000, 23000, 18000, 20000, 21000, 22000, 18000, 28000];
+        const optimisticData = [28000, 18000, 18000, 15000, 28000, 26000, 20000, 23000, 24000, 25000, 22000, 32000];
+
+        const ctxAnnual = document.getElementById('annualRevenueChart').getContext('2d');
+        const annualChart = new Chart(ctxAnnual, {
+            type: 'bar',
+            data: {
+                labels: monthlyData.map(d => d.month),
+                datasets: [
+                    { label: '2024', data: monthlyData.map(d => d.rev2024), backgroundColor: '#d6d3d1', borderRadius: 4 },
+                    { label: '2025', data: monthlyData.map(d => d.rev2025), backgroundColor: (ctx) => monthlyData[ctx.dataIndex]?.rev2025 >= monthlyData[ctx.dataIndex]?.rev2024 ? '#78716c' : '#f87171', borderRadius: 4 }
+                ]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
+                onClick: (e, elements) => { if (elements.length > 0) { const index = elements[0].index; updateMonthlyDetail(index); document.getElementById('monthSelector').value = index; } }
+            }
+        });
+
+        function updateMonthlyDetail(index) {
+            const data = monthlyData[index];
+            document.getElementById('detail-month-title').innerText = data.month + ' 2025';
+            document.getElementById('detail-rating').innerText = data.rating;
+            document.getElementById('detail-revenue').innerText = `HKD ${data.rev2025.toLocaleString()} (${data.growth})`;
+            document.getElementById('detail-highlight').innerText = data.highlight;
+        }
+
+        document.getElementById('monthSelector').addEventListener('change', (e) => updateMonthlyDetail(e.target.value));
+        updateMonthlyDetail(11);
+
+        const ctxDec = document.getElementById('decProductChart').getContext('2d');
+        new Chart(ctxDec, {
+            type: 'doughnut',
+            data: {
+                labels: ['EDP', 'Diffusers', 'Car', 'Other'],
+                datasets: [{ data: [33, 28, 14, 25], backgroundColor: ['#78716c', '#a8a29e', '#d6d3d1', '#f5f5f4'], borderWidth: 0 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } }
+        });
+
+        const ctxWhatsapp = document.getElementById('whatsappChart').getContext('2d');
+        new Chart(ctxWhatsapp, {
+            type: 'bar',
+            data: {
+                labels: ['#1 (Life)', '#2 (Scarcity)'],
+                datasets: [{ label: 'Max ROI %', data: [392, 828], backgroundColor: ['#d6d3d1', '#10b981'], borderRadius: 6 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+
+        const ctxForecast = document.getElementById('forecastChart').getContext('2d');
+        const forecastChart = new Chart(ctxForecast, {
+            type: 'line',
+            data: {
+                labels: forecastLabels,
+                datasets: [
+                    { label: 'Moderate', data: moderateData, borderColor: '#059669', backgroundColor: '#059669', borderWidth: 3, tension: 0.3, hidden: false },
+                    { label: 'Conservative', data: conservativeData, borderColor: '#78716c', borderWidth: 2, borderDash: [5, 5], tension: 0.3, hidden: true },
+                    { label: 'Optimistic', data: optimisticData, borderColor: '#f59e0b', borderWidth: 2, borderDash: [2, 2], tension: 0.3, hidden: true }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        const btnCon = document.getElementById('toggleConservative');
+        const btnMod = document.getElementById('toggleModerate');
+        const btnOpt = document.getElementById('toggleOptimistic');
+
+        function updateForecastVisibility(index, btn) {
+            const isHidden = !forecastChart.isDatasetVisible(index);
+            forecastChart.setDatasetVisibility(index, isHidden);
+            forecastChart.update();
+            if (isHidden) {
+                btn.classList.remove('bg-stone-100', 'text-stone-500');
+                if(index === 0) btn.classList.add('bg-emerald-600', 'text-white');
+                else if(index === 1) btn.classList.add('bg-stone-500', 'text-white');
+                else btn.classList.add('bg-amber-500', 'text-white');
+            } else {
+                btn.classList.add('bg-stone-100', 'text-stone-500');
+                btn.classList.remove('bg-emerald-600', 'bg-stone-500', 'bg-amber-500', 'text-white');
+            }
+        }
+
+        btnMod.addEventListener('click', () => updateForecastVisibility(0, btnMod));
+        btnCon.addEventListener('click', () => updateForecastVisibility(1, btnCon));
+        btnOpt.addEventListener('click', () => updateForecastVisibility(2, btnOpt));
+    </script>
+</body>
+</html>
