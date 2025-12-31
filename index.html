@@ -6,7 +6,7 @@
     <title>Fragrance House HK: 2025 回顧與 2026 戰略佈局</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-main: #FAF7F2;
@@ -16,12 +16,12 @@
             --emerald-soft: #065F46;
         }
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Noto Sans TC', 'Lato', sans-serif;
             background-color: var(--bg-main);
             color: var(--stone-800);
         }
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', 'Noto Sans TC', serif;
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
         }
         .chart-container {
             position: relative;
@@ -31,8 +31,41 @@
             height: 300px;
             max-height: 400px;
         }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
         .card-shadow {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .mobile-preview {
+            max-width: 260px;
+            border: 10px solid #1c1917;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            background: #e5ddd5;
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+        }
+        .mobile-preview:hover { transform: translateY(-5px); }
+        .whatsapp-header {
+            background-color: #075e54;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .whatsapp-body { padding: 4px; }
+        .campaign-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
         }
         .nav-link.active {
             border-bottom: 2px solid var(--stone-800);
@@ -53,7 +86,7 @@
         .animate-fade-in {
             animation: fadeIn 0.4s ease-out forwards;
         }
-        /* Modal Style for Copywriting */
+        /* Modal Style */
         .modal {
             display: none;
             position: fixed;
@@ -72,307 +105,470 @@
             max-width: 600px;
             position: relative;
         }
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(to right, transparent, #78716C, transparent);
+            margin: 4rem 0;
+        }
     </style>
 </head>
 <body class="antialiased scroll-smooth">
 
-    <!-- Modal -->
+    <!-- Modal for Copywriting -->
     <div id="copyModal" class="modal">
         <div class="modal-content animate-fade-in">
             <span onclick="closeModal()" class="absolute top-4 right-6 text-2xl cursor-pointer text-stone-400">&times;</span>
-            <h3 id="modalTitle" class="text-xl font-bold mb-2 serif"></h3>
+            <h3 id="modalTitle" class="text-xl font-bold mb-2 serif text-stone-800"></h3>
             <p id="modalGoal" class="text-xs font-bold text-amber-600 mb-4 uppercase"></p>
             <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 text-sm leading-relaxed whitespace-pre-wrap text-stone-700" id="modalBody"></div>
             <button onclick="copyText()" class="mt-6 w-full py-3 bg-stone-800 text-white rounded-xl font-bold hover:bg-stone-700 transition-all">複製文案</button>
         </div>
     </div>
 
-    <!-- 導覽列 -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-stone-200">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-2">
                 <div class="w-4 h-4 rounded-full bg-red-700"></div>
-                <span class="serif font-bold tracking-widest text-lg text-stone-800">FRAGRANCE HOUSE HK</span>
+                <span class="serif font-bold tracking-widest text-lg text-stone-800 uppercase">Fragrance House HK</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#performance" class="nav-link hover:text-stone-50 transition-colors">2025 回顧</a>
-                <a href="#strategy-logic" class="nav-link hover:text-stone-50 transition-colors">首季計劃</a>
-                <a href="#lny-sets" class="nav-link hover:text-stone-50 transition-colors">新年禮盒</a>
-                <a href="#ig-plan" class="nav-link hover:text-stone-50 transition-colors">IG 行銷</a>
-                <a href="#forecast" class="nav-link hover:text-stone-50 transition-colors">目標 KPI</a>
+            <!-- Unified Links -->
+            <div class="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-wider">
+                <div class="flex space-x-4 border-r border-stone-200 pr-6 mr-2">
+                    <span class="text-stone-400 select-none">2025 業績:</span>
+                    <a href="#executive-summary" class="hover:text-amber-700 transition-colors">概覽</a>
+                    <a href="#annual-analysis" class="hover:text-amber-700 transition-colors">數據分析</a>
+                    <a href="#whatsapp-strategy" class="hover:text-amber-700 transition-colors">行銷回顧</a>
+                </div>
+                <div class="flex space-x-4">
+                    <span class="text-stone-400 select-none">2026 計劃:</span>
+                    <a href="#strategy-logic" class="hover:text-red-700 transition-colors">首季計劃</a>
+                    <a href="#lny-sets" class="hover:text-red-700 transition-colors">新年禮盒</a>
+                    <a href="#ig-plan" class="hover:text-red-700 transition-colors">IG 行銷</a>
+                    <a href="#forecast" class="hover:text-red-700 transition-colors">目標 KPI</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 py-8 space-y-24">
+    <main class="max-w-7xl mx-auto px-4 py-8">
 
-        <!-- 第一部分：業績總結 -->
-        <section id="performance" class="space-y-8 text-center md:text-left">
-            <div class="max-w-3xl">
-                <h2 class="text-3xl font-bold serif mb-4 text-stone-800">2025 年度業績總結：質量與效率雙贏</h2>
-                <p class="text-stone-600 leading-relaxed">
-                    2025 年我們成功實現了從流量轉向質量的轉型。雖然流量減少，但 <b>AOV 增長了 16.7%</b>。回購率在 12 月達到 <b>42.1%</b> 的歷史新高。這為 2026 年推廣高品質新年套裝奠定了堅實的客群基礎。
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
-                <div class="bg-white p-6 rounded-2xl card-shadow border-t-4 border-stone-600 text-center">
-                    <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">年度營收</p>
-                    <p class="text-2xl font-bold mt-1">HKD 193,661</p>
-                    <p class="text-xs text-green-600 font-bold mt-1">▲ 1.8% YoY</p>
+        <!-- PART 1: 2025 PERFORMANCE REPORT -->
+        <div id="report-top-half" class="space-y-24">
+            
+            <header class="text-center space-y-4 mb-16">
+                <h1 class="text-5xl font-bold text-stone-800 serif">2025 Annual Performance Report</h1>
+                <p class="text-stone-500 text-lg">Analysis Period: Jan 1 - Dec 29, 2025 vs 2024</p>
+                <div class="inline-block bg-stone-200 rounded-full px-6 py-1.5 text-xs font-bold text-stone-700 uppercase tracking-widest">
+                    Strategic Pivot: Volume to Quality
                 </div>
-                <div class="bg-white p-6 rounded-2xl card-shadow border-t-4 border-amber-600 text-center">
-                    <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">平均訂單值 (AOV)</p>
-                    <p class="text-2xl font-bold mt-1">HKD 511</p>
-                    <p class="text-xs text-green-600 font-bold mt-1">▲ 16.7% YoY</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl card-shadow border-t-4 border-emerald-700 text-center">
-                    <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">巔峰回購率 (Dec)</p>
-                    <p class="text-2xl font-bold mt-1">42.1%</p>
-                    <p class="text-xs text-green-600 font-bold mt-1">★ 卓越忠誠度</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl card-shadow border-t-4 border-red-700 text-center">
-                    <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">轉換效率提升</p>
-                    <p class="text-2xl font-bold mt-1">0.57%</p>
-                    <p class="text-xs text-green-600 font-bold mt-1">▲ 190% 精準獲客</p>
-                </div>
-            </div>
+            </header>
 
-            <div class="bg-white p-8 rounded-3xl card-shadow">
-                <div class="chart-container">
-                    <canvas id="annualChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第二部分：2026 首季主要計劃 -->
-        <section id="strategy-logic" class="scroll-mt-20">
-            <div class="bg-stone-800 text-white p-10 md:p-16 rounded-[3rem] shadow-2xl space-y-12 border border-stone-700">
-                <div class="max-w-3xl">
-                    <h2 class="text-4xl font-bold serif mb-6 text-red-400">2026 首季主要計劃</h2>
-                    <p class="text-stone-300 text-lg">基於 2025 年數據洞察，我們將首季的營運核心建立在以下四大支柱：</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
-                        <div class="w-10 h-10 bg-red-500/20 rounded-full mx-auto flex items-center justify-center text-red-500 font-bold text-lg group-hover:bg-red-500 group-hover:text-white transition-all">1</div>
-                        <h3 class="text-xl font-bold text-white">流量質量化與套裝</h3>
-                        <p class="text-stone-400 leading-relaxed text-sm">
-                            推行「以組合代單品」策略。新年禮盒主力成交區間 <b>$680</b>。目標將套裝訂單佔比提升至 <b>40%</b> 以拉高 AOV。
-                        </p>
-                    </div>
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
-                        <div class="w-10 h-10 bg-emerald-500/20 rounded-full mx-auto flex items-center justify-center text-emerald-500 font-bold text-lg group-hover:bg-emerald-500 group-hover:text-white transition-all">2</div>
-                        <h3 class="text-xl font-bold text-white">新客獲取引擎</h3>
-                        <p class="text-stone-400 leading-relaxed text-sm">
-                            利用 12 月 <b>42.1% 的高回購群眾</b> 啟動「Give 50, Get 50」計劃。預計全年達成 <b>300 位</b> 新客獲取。
-                        </p>
-                    </div>
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
-                        <div class="w-10 h-10 bg-amber-500/20 rounded-full mx-auto flex items-center justify-center text-amber-500 font-bold text-lg group-hover:bg-amber-500 group-hover:text-white transition-all">3</div>
-                        <h3 class="text-xl font-bold text-white">Threads KOC 企劃</h3>
-                        <p class="text-stone-400 leading-relaxed text-sm">
-                            於 CNY 期間寄送 <b>White Pavilion 50ml</b> 予 <b>4 位素人</b> 進行 UGC 宣傳，增加品牌曝光。
-                        </p>
-                    </div>
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
-                        <div class="w-10 h-10 bg-blue-500/20 rounded-full mx-auto flex items-center justify-center text-blue-500 font-bold text-lg group-hover:bg-blue-500 group-hover:text-white transition-all">4</div>
-                        <h3 class="text-xl font-bold text-white">車用香薰升級戰略</h3>
-                        <p class="text-stone-400 leading-relaxed text-sm">
-                            實施 <b>「強制三件套」</b> 制度，搭配 <b>加購優惠 (20% Off)</b>。在不打折套裝的前提下，用加購回饋回購客。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Threads Campaign Detail -->
-                <div class="mt-12 p-8 bg-stone-900 rounded-3xl border border-stone-700 animate-fade-in">
-                    <h3 class="text-2xl font-bold mb-6 text-center text-red-200 serif underline underline-offset-8">Threads 新春口碑宣傳企劃</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-sm text-center md:text-left">
-                        <div class="space-y-3">
-                            <p class="text-red-400 font-bold text-lg">📦 寄送安排</p>
-                            <p class="text-stone-300 leading-relaxed">
-                                選定 <b>4 位高參與度素人 (KOCs)</b>，寄送 <b>White Pavilion 50ml 香水</b> 裝。
-                                <br><small class="text-stone-500 italic">目標：營造真實、貼地的香氣體驗，引發 Threads 串文討論。</small>
-                            </p>
-                        </div>
-                        <div class="space-y-3">
-                            <p class="text-red-400 font-bold text-lg">📝 UGC 宣傳內容</p>
-                            <p class="text-stone-300 leading-relaxed">
-                                素人將分享 <b>「新年開運香氣」</b> 或 <b>「Pavilion White Tea 留香體驗」</b> 之串文。
-                                <br><b>必須帶入：品牌網頁或instagram</b>
-                            </p>
-                        </div>
-                        <div class="space-y-3">
-                            <p class="text-red-400 font-bold text-lg">🎯 預期影響</p>
-                            <p class="text-stone-300 leading-relaxed">
-                                透過素人真實社交圈層提高 <b>Brand Exposure</b>，配合新年促銷，將流量直接引導至官網。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 車用香薰決策分析 (Strict 3-piece Mandatory + 20% Add-on) -->
-                <div class="mt-12 p-8 bg-black/30 rounded-3xl border border-stone-700 animate-fade-in">
-                    <h3 class="text-2xl font-bold mb-8 text-center text-amber-200 serif underline underline-offset-8">車用香薰「三件套 + 加購」戰略實施分析</h3>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-center md:text-left">
-                        <div class="space-y-4">
-                            <h4 class="flex items-center justify-center md:justify-start text-emerald-400 font-bold text-lg">
-                                <span class="mr-2">📊</span> 強制三件套邏輯 (Mandatory 3-Pack)
-                            </h4>
-                            <ul class="text-stone-300 text-sm space-y-3 pl-4 list-disc marker:text-emerald-500">
-                                <li><b>極大化提升客單價 (AOV)</b>: 產品頁面最低購買單位設為 <b>$174 ($58 x 3)</b>。這是一個強制性門檻，直接過濾低價值訂單。</li>
-                                <li><b>不提供套裝折扣</b>: 維持 <b>$174 銷售原價</b>（無組合優惠）。重點在於傳遞高品質組合價值感，而非削價。</li>
-                                <li><b>營運簡化</b>: 減少單件散裝出貨，優化物流包裝與與 3PL 的整合。</li>
-                            </ul>
-                        </div>
-                        <div class="space-y-4">
-                            <h4 class="flex items-center justify-center md:justify-start text-amber-400 font-bold text-lg">
-                                <span class="mr-2">🛡️</span> 靈活加購優惠 (20% Off Add-on)
-                            </h4>
-                            <p class="text-stone-300 text-sm leading-relaxed">
-                                雖然產品頁強制三件套，但我們在結帳環節提供 <b>加購優惠</b> 以對沖轉換風險：
-                            </p>
-                            <ul class="text-stone-300 text-sm space-y-3 pl-4 list-disc marker:text-amber-500">
-                                <li><b>全店購物加購 20% Off</b>: 只要購買店內任何主產品，即可在結帳前以 <b>$46.4</b> (原價 $58) 加購單件。</li>
-                                <li><b>激發衝動轉化</b>: $46.4 是極佳的衝動購買價位，能有效增加訂單深度。</li>
-                                <li><b>回饋忠誠客戶</b>: 將優惠集中於已購買主產品的「有效客戶」，維持價格體系硬度。</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 p-6 bg-red-900/20 rounded-2xl border border-red-500/30 text-center text-red-100">
-                        <p class="font-bold text-sm uppercase tracking-widest mb-2">2026 Q1 正式執行方針</p>
-                        <p class="text-xs leading-relaxed italic">
-                            官網產品頁面：<b>僅限三件套購買 ($174)</b> | 購物車與結帳頁面：<b>提供 20% Off 單件加購優惠</b>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第三部分：新年禮盒 -->
-        <section id="lny-sets" class="space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-4">
-                <h2 class="text-4xl font-bold serif text-red-800">2026 農曆新年：精選套裝</h2>
-                <p class="text-stone-600">
-                    本年度新年產品策略聚焦於 <b>柚子花瓣 (Pomelo Petals)</b>，寓意守護與吉祥。我們將原有產品重新打包，提供約 <b>9 折</b> 的超值組合。
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-center md:text-left">
-                <div class="lg:col-span-4 space-y-3">
-                    <button onclick="showGiftSet(0)" class="gift-btn w-full p-5 text-left rounded-xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group active-btn" id="btn-set-0">
-                        <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1">SET 01 | 尊貴系列</span>
-                        <span class="block font-bold text-stone-800 group-hover:text-red-700">富貴迎春尊貴禮盒</span>
-                    </button>
-                    <button onclick="showGiftSet(1)" class="gift-btn w-full p-5 text-left rounded-xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group" id="btn-set-1">
-                        <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1">SET 02 | B2B 首選</span>
-                        <span class="block font-bold text-stone-800 group-hover:text-red-700">企業送禮尊尚禮盒 (買5送1)</span>
-                    </button>
-                    <button onclick="showGiftSet(2)" class="gift-btn w-full p-5 text-left rounded-xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group" id="btn-set-2">
-                        <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1">SET 03 | 蛇年限定</span>
-                        <span class="block font-bold text-stone-800 group-hover:text-red-700">蛇年限定迷你三件組</span>
-                    </button>
-                    <button onclick="showGiftSet(3)" class="gift-btn w-full p-5 text-left rounded-xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group" id="btn-set-3">
-                        <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1">SET 04 | 人氣經典</span>
-                        <span class="block font-bold text-stone-800 group-hover:text-red-700">新春暢銷人氣套裝</span>
-                    </button>
-                </div>
-
-                <div class="lg:col-span-8 bg-white p-8 md:p-12 rounded-3xl card-shadow border border-stone-100 min-h-[520px] flex flex-col justify-between" id="gift-set-display">
-                    <!-- 動態內容 -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 第四部分：IG 行銷與文案 -->
-        <section id="ig-plan" class="space-y-8">
-            <div class="max-w-3xl">
-                <h2 class="text-3xl font-bold serif mb-4 text-stone-800">Q1 每週 IG 發文文案企劃</h2>
-                <p class="text-stone-600 leading-relaxed">
-                    文案方針：以「香港人的日常」為核心，不強調奢華，轉而sell <b>生活陪伴感</b> 與 <b>極高回報感</b>。
-                </p>
-            </div>
-
-            <div class="flex flex-wrap gap-3 mb-8 text-center md:text-left">
-                <button onclick="renderIG('jan')" id="ig-btn-jan" class="ig-tab px-6 py-2 rounded-full border border-stone-200 font-bold transition-all text-xs tab-active">一月：新年套裝</button>
-                <button onclick="renderIG('feb')" id="ig-btn-feb" class="ig-tab px-6 py-2 rounded-full border border-stone-200 font-bold transition-all text-xs bg-white">二月：推薦計劃</button>
-                <button onclick="renderIG('mar')" id="ig-btn-mar" class="ig-tab px-6 py-2 rounded-full border border-stone-200 font-bold transition-all text-xs bg-white">三月：春季煥新</button>
-            </div>
-
-            <div id="ig-timeline" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- 動態內容 -->
-            </div>
-        </section>
-
-        <!-- 第五部分：2026 目標營利 -->
-        <section id="forecast" class="space-y-8">
-            <div class="bg-stone-900 text-white p-12 rounded-[3rem] shadow-2xl relative overflow-hidden">
-                <div class="relative z-10 space-y-8">
-                    <h2 class="text-3xl font-bold serif text-red-400 text-center md:text-left">2026 目標營利</h2>
-                    <p class="text-stone-400 max-w-xl text-center md:text-left">
-                        針對 2026 Q1，我們設定了明確的訂單增長目標，解決流量下滑的挑戰。
+            <!-- Executive Summary -->
+            <section id="executive-summary" class="bg-white rounded-3xl card-shadow p-8 md:p-12 scroll-mt-20">
+                <div class="mb-10">
+                    <h2 class="text-3xl font-bold text-stone-800 mb-4 serif">Executive Summary</h2>
+                    <p class="text-stone-600 text-lg leading-relaxed">
+                        2025 marked a pivotal transition for Fragrance House HK. We moved from a high-traffic, low-conversion model to a <b>high-efficiency, quality-focused model</b>. Despite a nearly 70% drop in raw traffic, revenue grew, margins improved, and customer retention surged.
                     </p>
-                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                        <button onclick="updateForecast('conservative')" class="px-5 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 border border-stone-700 transition-all text-sm font-bold">保守展望</button>
-                        <button onclick="updateForecast('moderate')" class="px-5 py-2.5 rounded-xl bg-red-700 hover:bg-red-600 border border-red-500 transition-all text-sm font-bold">建議目標 (每月 50-70 張)</button>
-                        <button onclick="updateForecast('optimistic')" class="px-5 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 border border-emerald-700 transition-all text-sm font-bold">樂觀願景</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                    <div class="bg-stone-50 rounded-2xl p-6 border-l-4 border-amber-500">
+                        <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">Annual Revenue</p>
+                        <p class="text-3xl font-bold text-stone-800 mt-2">HKD 193,661</p>
+                        <p class="text-sm text-green-600 font-bold mt-2">▲ 1.8% YoY</p>
+                    </div>
+                    <div class="bg-stone-50 rounded-2xl p-6 border-l-4 border-blue-400">
+                        <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">Avg Order Value</p>
+                        <p class="text-3xl font-bold text-stone-800 mt-2">HKD 511</p>
+                        <p class="text-sm text-green-600 font-bold mt-2">▲ 16.7% YoY</p>
+                    </div>
+                    <div class="bg-stone-50 rounded-2xl p-6 border-l-4 border-emerald-500">
+                        <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">Returning Rate</p>
+                        <p class="text-3xl font-bold text-stone-800 mt-2">28.4%</p>
+                        <p class="text-sm text-green-600 font-bold mt-2">▲ 45% Increase</p>
+                    </div>
+                    <div class="bg-stone-50 rounded-2xl p-6 border-l-4 border-red-400">
+                        <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">Total Traffic</p>
+                        <p class="text-3xl font-bold text-stone-800 mt-2">~5,200/mo</p>
+                        <p class="text-sm text-red-500 font-bold mt-2">▼ 69.5% YoY</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 rounded-2xl p-6 border border-amber-100">
+                    <h3 class="font-bold text-amber-800 mb-2 flex items-center">
+                        <span class="mr-2">💡</span> Strategic Insight
+                    </h3>
+                    <p class="text-amber-900 text-sm leading-relaxed">
+                        The core narrative of 2025 is <b>"Less Traffic, More Value."</b> We successfully retained loyal customers (Revenue from returning customers +439% in Dec), but 2026 must focus on rebuilding the top-of-funnel traffic sources.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Monthly Analysis -->
+            <section id="annual-analysis" class="scroll-mt-20">
+                <div class="bg-white rounded-3xl card-shadow p-8 md:p-12">
+                    <div class="mb-8">
+                        <h2 class="text-3xl font-bold text-stone-800 mb-2 serif">2025 vs 2024 Monthly Comparison</h2>
+                        <p class="text-stone-600">Explore the year's performance month-by-month. Click on any bar below to see details.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-8 border-t border-stone-800 text-center md:text-left">
-                        <div>
-                            <p class="text-stone-500 text-xs font-bold uppercase mb-2 tracking-widest">目標月均訂單量 (Q1)</p>
-                            <p id="forecast-orders-monthly" class="text-4xl font-bold serif text-red-100">50 - 70 張</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                        <div class="lg:col-span-2">
+                            <div class="chart-container">
+                                <canvas id="annualRevenueChartReport"></canvas>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-stone-500 text-xs font-bold uppercase mb-2 tracking-widest">預期 AOV (維持目標)</p>
-                            <p id="forecast-aov" class="text-3xl font-bold serif text-red-100">HKD 544</p>
-                        </div>
-                        <div>
-                            <p class="text-stone-500 text-xs font-bold uppercase mb-2 tracking-widest">目標季度營收 (Q1)</p>
-                            <p id="forecast-revenue-q1" class="text-3xl font-bold serif text-red-100">HKD 98,000+</p>
-                        </div>
-                    </div>
 
-                    <!-- 計算公式 (Calculation Method) -->
-                    <div class="pt-10 border-t border-stone-800">
-                        <h4 class="text-red-400 font-bold mb-6 italic text-lg underline underline-offset-8 uppercase tracking-widest text-center md:text-left">目標達成計算公式 (Calculation Method)</h4>
-                        <div class="bg-black/40 p-8 rounded-2xl font-mono text-sm text-stone-200 space-y-6 text-center md:text-left">
-                            <div class="flex flex-col md:flex-row md:items-center gap-2">
-                                <span class="text-stone-500">// 2026 Q1 目標營收計算路徑（維持 $544 AOV）：</span>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
-                                <div class="p-4 bg-stone-900 rounded-xl border border-stone-700">
-                                    <p class="text-stone-400 mb-2">A. Q1 月均訂單目標 (Moderate)</p>
-                                    <p class="text-2xl font-bold text-red-300">60 訂單/月 x $544 AOV = $32,640/月</p>
+                        <div class="lg:col-span-1 bg-stone-50 rounded-2xl p-8 border border-stone-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-6">
+                                    <h3 id="detail-month-title" class="text-2xl font-bold text-stone-800 serif">December</h3>
+                                    <div id="detail-rating" class="text-amber-500 text-xl">⭐⭐⭐⭐⭐</div>
                                 </div>
-                                <div class="p-4 bg-stone-900 rounded-xl border border-stone-700">
-                                    <p class="text-stone-400 mb-2">B. Q1 季度預估總結算</p>
-                                    <p class="text-2xl font-bold text-red-300">$32,640 x 3 個月 = HKD 97,920</p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <p class="text-[10px] text-stone-500 uppercase font-bold tracking-widest mb-1">Revenue</p>
+                                        <p id="detail-revenue" class="text-xl font-bold text-stone-800">HKD 19,765 (+18.3%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-stone-500 uppercase font-bold tracking-widest mb-1">Key Highlight</p>
+                                        <p id="detail-highlight" class="text-sm text-stone-700 leading-relaxed font-medium">Strong recovery. WhatsApp ROI 600%+ saved the quarter.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mt-6 p-4 bg-white/5 rounded-xl text-stone-300 text-xs text-left">
-                                <p><b>戰略分析：</b> 維持 $544 AOV 的信心來自於<b>強制三件套 ($174) 且無折扣</b>之制度，配合<b>結帳環節的加購策略 (20% Off)</b>。重點將透過 Threads KOC 宣傳與回購推薦來驅動 <b>訂單總量 (Volume)</b> 的增長。</p>
+                            <div class="mt-10 pt-6 border-t border-stone-200">
+                                <label class="block text-xs font-bold text-stone-700 mb-2 uppercase tracking-wide">Select Month:</label>
+                                <select id="monthSelector" class="block w-full rounded-xl border-stone-300 shadow-sm focus:border-stone-500 focus:ring-stone-500 bg-white p-3 text-sm font-medium">
+                                    <option value="0">January</option><option value="1">February</option><option value="2">March</option>
+                                    <option value="3">April</option><option value="4">May</option><option value="5">June</option>
+                                    <option value="6">July</option><option value="7">August</option><option value="8">September</option>
+                                    <option value="9">October</option><option value="10">November</option><option value="11" selected>December</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- WhatsApp Marketing Strategy -->
+            <section id="whatsapp-strategy" class="bg-white rounded-3xl card-shadow p-8 md:p-12 scroll-mt-20">
+                <div class="mb-10">
+                    <h2 class="text-3xl font-bold text-stone-800 mb-2 serif">WhatsApp Marketing Analysis</h2>
+                    <p class="text-stone-600 text-lg">Visual comparison: Lifestyle vs Scarcity approach.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+                    <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8 items-start bg-stone-100 p-10 rounded-[2rem] border border-stone-200">
+                        <div class="flex flex-col items-center space-y-4">
+                            <p class="font-bold text-stone-500 text-[10px] uppercase tracking-widest">Campaign #1 Preview</p>
+                            <div class="mobile-preview">
+                                <div class="whatsapp-header">Fragrance House HK</div>
+                                <div class="whatsapp-body">
+                                    <img src="https://raw.githubusercontent.com/BDGOAL/FragranceHouse/refs/heads/main/camp1.jpg" alt="Campaign #1" class="campaign-img" onerror="this.src='https://placehold.co/400x800?text=Campaign+1'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center space-y-4">
+                            <p class="font-bold text-stone-500 text-[10px] uppercase tracking-widest">Campaign #2 Preview</p>
+                            <div class="mobile-preview">
+                                <div class="whatsapp-header">Fragrance House HK</div>
+                                <div class="whatsapp-body">
+                                    <img src="https://raw.githubusercontent.com/BDGOAL/FragranceHouse/refs/heads/main/Camp2.jpg" alt="Campaign #2" class="campaign-img" onerror="this.src='https://placehold.co/400x800?text=Campaign+2'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div class="chart-container" style="height: 220px;">
+                            <canvas id="whatsappChart"></canvas>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-stone-300 pl-4 py-3 bg-stone-50 rounded-r-2xl">
+                                <h4 class="font-bold text-stone-700 text-sm">#1: Christmas Promotions</h4>
+                                <p class="text-xs text-stone-500 mb-2">ROI: 126-392%</p>
+                                <p class="text-xs text-stone-600 leading-relaxed font-medium">Warm and conversational tone. Focus on category-wide discounts.</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-500 pl-4 py-3 bg-emerald-50 rounded-r-2xl">
+                                <h4 class="font-bold text-emerald-800 text-sm">#2: White Michelia Restock</h4>
+                                <p class="text-xs text-emerald-600 mb-2">ROI: 596-828% 🚀</p>
+                                <p class="text-xs text-emerald-800 leading-relaxed font-medium">Urgent, scarcity-focused messaging. Major sales driver.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- PART 2: 2026 STRATEGY PLAN -->
+        <div id="strategy-bottom-half" class="space-y-24">
+            
+            <!-- Performance Summary Strategy Section -->
+            <section id="performance" class="space-y-8 scroll-mt-20">
+                <div class="max-w-3xl">
+                    <h2 class="text-4xl font-bold serif mb-4 text-stone-800">2026 戰略佈局規劃</h2>
+                    <p class="text-stone-600 text-lg leading-relaxed">
+                        基於 2025 年的轉型成功，2026 年首季我們將深化「品質驅動」策略，透過新年禮盒、口碑行銷及加購機制，全面推動訂單量與營利的雙向增長。
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 rounded-[2.5rem] card-shadow">
+                    <h3 class="text-center font-bold text-stone-500 uppercase tracking-widest text-sm mb-8">月度營收趨勢展望：2024 vs 2025</h3>
+                    <div class="chart-container">
+                        <canvas id="annualChartStrategy"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2026 首季主要計劃 -->
+            <section id="strategy-logic" class="scroll-mt-20">
+                <div class="bg-stone-800 text-white p-10 md:p-16 rounded-[3rem] shadow-2xl space-y-12 border border-stone-700">
+                    <div class="max-w-3xl">
+                        <h2 class="text-4xl font-bold serif mb-6 text-red-400">2026 首季主要計劃</h2>
+                        <p class="text-stone-300 text-lg leading-relaxed">基於 2025 年數據洞察，我們將首季的營運核心建立在以下四大支柱：</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
+                            <div class="w-10 h-10 bg-red-500/20 rounded-full mx-auto flex items-center justify-center text-red-500 font-bold text-lg group-hover:bg-red-500 group-hover:text-white transition-all">1</div>
+                            <h3 class="text-xl font-bold text-white">流量質量化與套裝</h3>
+                            <p class="text-stone-400 leading-relaxed text-sm">
+                                推行「以組合代單品」策略。新年禮盒主力成交區間 <b>$680</b>。目標將套裝訂單佔比提升至 <b>40%</b> 以拉高 AOV。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
+                            <div class="w-10 h-10 bg-emerald-500/20 rounded-full mx-auto flex items-center justify-center text-emerald-500 font-bold text-lg group-hover:bg-emerald-500 group-hover:text-white transition-all">2</div>
+                            <h3 class="text-xl font-bold text-white">新客獲取引擎</h3>
+                            <p class="text-stone-400 leading-relaxed text-sm">
+                                利用 12 月 <b>42.1% 的高回購群眾</b> 啟動「Give 50, Get 50」計劃。預計全年達成 <b>300 位</b> 新客獲取。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
+                            <div class="w-10 h-10 bg-amber-500/20 rounded-full mx-auto flex items-center justify-center text-amber-500 font-bold text-lg group-hover:bg-amber-500 group-hover:text-white transition-all">3</div>
+                            <h3 class="text-xl font-bold text-white">Threads KOC 企劃</h3>
+                            <p class="text-stone-400 leading-relaxed text-sm">
+                                於 CNY 期間寄送 <b>White Pavilion 50ml</b> 予 <b>4 位素人</b> 進行 UGC 宣傳，增加品牌曝光。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4 group hover:bg-white/10 transition-all text-center">
+                            <div class="w-10 h-10 bg-blue-500/20 rounded-full mx-auto flex items-center justify-center text-blue-500 font-bold text-lg group-hover:bg-blue-500 group-hover:text-white transition-all">4</div>
+                            <h3 class="text-xl font-bold text-white">車用香薰升級戰略</h3>
+                            <p class="text-stone-400 leading-relaxed text-sm">
+                                實施 <b>「強制三件套」</b> 制度，搭配 <b>加購優惠 (20% Off)</b>。在不打折套裝的前提下，用加購回饋回購客。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Threads Campaign Detail -->
+                    <div class="mt-12 p-8 bg-stone-900 rounded-3xl border border-stone-700 animate-fade-in">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-red-200 serif underline underline-offset-8">Threads 新春口碑宣傳企劃</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-sm text-center md:text-left">
+                            <div class="space-y-3">
+                                <p class="text-red-400 font-bold text-lg">📦 寄送安排</p>
+                                <p class="text-stone-300 leading-relaxed">
+                                    選定 <b>4 位高參與度素人 (KOCs)</b>，寄送 <b>White Pavilion 50ml 香水</b> 裝。
+                                    <br><small class="text-stone-500 italic">目標：營造真實、貼地的香氣體驗，引發 Threads 串文討論。</small>
+                                </p>
+                            </div>
+                            <div class="space-y-3">
+                                <p class="text-red-400 font-bold text-lg">📝 UGC 宣傳內容</p>
+                                <p class="text-stone-300 leading-relaxed">
+                                    素人將分享 <b>「新年開運香氣」</b> 或 <b>「Pavilion White Tea 留香體驗」</b> 之串文。
+                                    <br><b>必須帶入：品牌網頁或instagram</b>
+                                </p>
+                            </div>
+                            <div class="space-y-3">
+                                <p class="text-red-400 font-bold text-lg">🎯 預期影響</p>
+                                <p class="text-stone-300 leading-relaxed">
+                                    透過素人真實社交圈層提高 <b>Brand Exposure</b>，配合新年促銷，將流量直接引導至官網。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 車用香薰決策分析 -->
+                    <div class="mt-12 p-8 bg-black/30 rounded-3xl border border-stone-700 animate-fade-in">
+                        <h3 class="text-2xl font-bold mb-8 text-center text-amber-200 serif underline underline-offset-8">車用香薰「三件套 + 加購」戰略實施分析</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-center md:text-left">
+                            <div class="space-y-4">
+                                <h4 class="flex items-center justify-center md:justify-start text-emerald-400 font-bold text-lg">
+                                    <span class="mr-2">📊</span> 強制三件套邏輯 (Mandatory 3-Pack)
+                                </h4>
+                                <ul class="text-stone-300 text-sm space-y-3 pl-4 list-disc marker:text-emerald-500">
+                                    <li><b>極大化提升客單價 (AOV)</b>: 產品頁面最低購買單位設為 <b>$174 ($58 x 3)</b>。這是一個強制性門檻，直接過濾低價值訂單。</li>
+                                    <li><b>不提供套裝折扣</b>: 維持 <b>$174 銷售原價</b>（無組合優惠）。重點在於傳遞高品質組合價值感，而非削價。</li>
+                                    <li><b>營運簡化</b>: 減少單件散裝出貨，優化物流包裝與與 3PL 的整合。</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <h4 class="flex items-center justify-center md:justify-start text-amber-400 font-bold text-lg">
+                                    <span class="mr-2">🛡️</span> 靈活加購優惠 (20% Off Add-on)
+                                </h4>
+                                <p class="text-stone-300 text-sm leading-relaxed">
+                                    雖然產品頁強制三件套，但我們在結帳環節提供 <b>加購優惠</b> 以對沖轉換風險：
+                                </p>
+                                <ul class="text-stone-300 text-sm space-y-3 pl-4 list-disc marker:text-amber-500">
+                                    <li><b>全店購物加購 20% Off</b>: 只要購買店內任何主產品，即可在結帳前以 <b>$46.4</b> (原價 $58) 加購單件。</li>
+                                    <li><b>激發衝動轉化</b>: $46.4 是極佳的衝動購買價位，能有效增加訂單深度。</li>
+                                    <li><b>回饋忠誠客戶</b>: 將優惠集中於已購買主產品的「有效客戶」，維持價格體系硬度。</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-8 p-6 bg-red-900/20 rounded-2xl border border-red-500/30 text-center text-red-100">
+                            <p class="font-bold text-sm uppercase tracking-widest mb-2">2026 Q1 正式執行方針</p>
+                            <p class="text-xs leading-relaxed italic">
+                                官網產品頁面：<b>僅限三件套購買 ($174)</b> | 購物車與結帳頁面：<b>提供 20% Off 單件加購優惠</b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 新年禮盒 -->
+            <section id="lny-sets" class="space-y-8 scroll-mt-20">
+                <div class="text-center max-w-2xl mx-auto space-y-4">
+                    <h2 class="text-5xl font-bold serif text-red-800 uppercase tracking-tighter">2026 農曆新年：精選套裝</h2>
+                    <p class="text-stone-600 text-lg">
+                        本年度新年產品策略聚焦於 <b>柚子花瓣 (Pomelo Petals)</b>，寓意守護與吉祥。我們將原有產品重新打包，提供約 <b>9 折</b> 的超值組合。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                    <div class="lg:col-span-4 space-y-4">
+                        <button onclick="showGiftSet(0)" class="gift-btn w-full p-6 text-left rounded-2xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group active-btn" id="btn-set-0">
+                            <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1 tracking-widest">SET 01 | 尊貴系列</span>
+                            <span class="block font-bold text-stone-800 group-hover:text-red-700 text-lg">富貴迎春尊貴禮盒</span>
+                        </button>
+                        <button onclick="showGiftSet(1)" class="gift-btn w-full p-6 text-left rounded-2xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group" id="btn-set-1">
+                            <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1 tracking-widest">SET 02 | B2B 首選</span>
+                            <span class="block font-bold text-stone-800 group-hover:text-red-700 text-lg">企業送禮尊尚禮盒 (買5送1)</span>
+                        </button>
+                        <button onclick="showGiftSet(2)" class="gift-btn w-full p-6 text-left rounded-2xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group" id="btn-set-2">
+                            <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1 tracking-widest">SET 03 | 蛇年限定</span>
+                            <span class="block font-bold text-stone-800 group-hover:text-red-700 text-lg">蛇年限定迷你三件組</span>
+                        </button>
+                        <button onclick="showGiftSet(3)" class="gift-btn w-full p-6 text-left rounded-2xl border-2 border-stone-200 hover:border-red-700 transition-all bg-white group" id="btn-set-3">
+                            <span class="block text-[10px] font-bold text-stone-400 uppercase mb-1 tracking-widest">SET 04 | 人氣經典</span>
+                            <span class="block font-bold text-stone-800 group-hover:text-red-700 text-lg">新春暢銷人氣套裝</span>
+                        </button>
+                    </div>
+
+                    <div class="lg:col-span-8 bg-white p-10 md:p-14 rounded-[2.5rem] card-shadow border border-stone-100 min-h-[520px] flex flex-col justify-between" id="gift-set-display">
+                        <!-- Content Injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- IG 行銷 -->
+            <section id="ig-plan" class="space-y-8 scroll-mt-20">
+                <div class="max-w-3xl">
+                    <h2 class="text-4xl font-bold serif mb-4 text-stone-800">Q1 每週 IG 發文文案企劃</h2>
+                    <p class="text-stone-600 text-lg leading-relaxed">
+                        文案方針：以「香港人的日常」為核心，不強調奢華，轉而sell <b>生活陪伴感</b> 與 <b>極高回報感</b>。
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-4 mb-10 text-center md:text-left">
+                    <button onclick="renderIG('jan')" id="ig-btn-jan" class="ig-tab px-8 py-2.5 rounded-full border-2 border-stone-200 font-bold transition-all text-xs tab-active tracking-widest">一月：新年套裝</button>
+                    <button onclick="renderIG('feb')" id="ig-btn-feb" class="ig-tab px-8 py-2.5 rounded-full border-2 border-stone-200 font-bold transition-all text-xs bg-white tracking-widest">二月：推薦計劃</button>
+                    <button onclick="renderIG('mar')" id="ig-btn-mar" class="ig-tab px-8 py-2.5 rounded-full border-2 border-stone-200 font-bold transition-all text-xs bg-white tracking-widest">三月：春季煥新</button>
+                </div>
+
+                <div id="ig-timeline" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Cards Injected via JS -->
+                </div>
+            </section>
+
+            <!-- 目標營利 -->
+            <section id="forecast" class="space-y-8 scroll-mt-20">
+                <div class="bg-stone-900 text-white p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10 space-y-12">
+                        <div class="text-center md:text-left space-y-4">
+                            <h2 class="text-4xl font-bold serif text-red-400">2026 目標營利</h2>
+                            <p class="text-stone-400 max-w-xl text-lg">針對 2026 Q1，我們設定了明確的訂單增長目標，解決流量下滑的挑戰。</p>
+                        </div>
+                        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                            <button onclick="updateForecast('conservative')" class="px-6 py-3 rounded-2xl bg-stone-800 hover:bg-stone-700 border border-stone-700 transition-all text-sm font-bold tracking-widest">保守展望</button>
+                            <button onclick="updateForecast('moderate')" class="px-6 py-3 rounded-2xl bg-red-700 hover:bg-red-600 border border-red-500 transition-all text-sm font-bold tracking-widest">建議目標 (每月 50-70 張)</button>
+                            <button onclick="updateForecast('optimistic')" class="px-6 py-3 rounded-2xl bg-emerald-800 hover:bg-emerald-700 border border-emerald-700 transition-all text-sm font-bold tracking-widest">樂觀願景</button>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 pt-10 border-t border-stone-800 text-center md:text-left">
+                            <div>
+                                <p class="text-stone-500 text-[10px] font-bold uppercase mb-2 tracking-[0.2em]">目標月均訂單量 (Q1)</p>
+                                <p id="forecast-orders-monthly" class="text-5xl font-bold serif text-red-100">50 - 70 張</p>
+                            </div>
+                            <div>
+                                <p class="text-stone-500 text-[10px] font-bold uppercase mb-2 tracking-[0.2em]">預期 AOV (維持目標)</p>
+                                <p id="forecast-aov" class="text-5xl font-bold serif text-red-100">HKD 544</p>
+                            </div>
+                            <div>
+                                <p class="text-stone-500 text-[10px] font-bold uppercase mb-2 tracking-[0.2em]">目標季度營收 (Q1)</p>
+                                <p id="forecast-revenue-q1" class="text-5xl font-bold serif text-red-100">HKD 98,000+</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-12 border-t border-stone-800">
+                            <h4 class="text-red-400 font-bold mb-8 italic text-xl underline underline-offset-8 uppercase tracking-widest text-center md:text-left">目標達成計算公式 (Calculation Method)</h4>
+                            <div class="bg-black/40 p-10 rounded-[2rem] font-mono text-sm text-stone-200 space-y-8 text-center md:text-left">
+                                <span class="text-stone-500 text-xs">// 2026 Q1 目標營收計算路徑（維持 $544 AOV）：</span>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    <div class="p-6 bg-stone-900 rounded-2xl border border-stone-700 shadow-inner">
+                                        <p class="text-stone-400 mb-2 font-bold text-xs">A. Q1 月均訂單目標 (Moderate)</p>
+                                        <p class="text-2xl font-bold text-red-300">60 訂單/月 x $544 AOV = $32,640/月</p>
+                                    </div>
+                                    <div class="p-6 bg-stone-900 rounded-2xl border border-stone-700 shadow-inner">
+                                        <p class="text-stone-400 mb-2 font-bold text-xs">B. Q1 季度預估總結算</p>
+                                        <p class="text-2xl font-bold text-red-300">$32,640 x 3 個月 = HKD 97,920</p>
+                                    </div>
+                                </div>
+                                <div class="mt-8 p-6 bg-white/5 rounded-2xl text-stone-300 text-xs text-left leading-relaxed">
+                                    <p><b>戰略分析：</b> 維持 $544 AOV 的信心來自於<b>強制三件套 ($174) 且無折扣</b>之制度，配合<b>結帳環節的加購策略 (20% Off)</b>。重點將透過 Threads KOC 宣傳與回購推薦來驅動 <b>訂單總量 (Volume)</b> 的增長。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
     </main>
 
-    <footer class="bg-white border-t border-stone-200 py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="serif text-stone-800 font-bold mb-4 tracking-widest uppercase text-center">FRAGRANCE HOUSE HK | 2026 STRATEGY</p>
-            <p class="text-stone-400 text-xs italic text-center">專供 Fragrance House 運營決策參考。數據統計截至 2025/12/29。</p>
+    <footer class="bg-stone-900 text-stone-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <p class="serif font-bold text-stone-200 text-2xl tracking-[0.3em] uppercase">FRAGRANCE HOUSE HK</p>
+            <p class="text-xs uppercase tracking-[0.5em] font-medium">Est. Hong Kong</p>
+            <div class="pt-8 text-[10px] text-stone-600 uppercase tracking-widest">
+                Prepared by Sidekick AI Business Analyst &bullet; Strategy Planning Division
+            </div>
+            <p class="text-[9px] text-stone-700 italic pt-2">專供 Fragrance House 運營決策參考。數據統計截至 2025/12/29。</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts Combined -->
     <script>
-        const monthlyPerformance = [
+        // --- DATA FROM PART 1 (REPORT) ---
+        const monthlyDataReport = [
+            { month: 'Jan', rev2024: 11751, rev2025: 18431, rating: '⭐⭐⭐⭐⭐', highlight: 'Explosive start. Conversion tripled. White Michelia Candle strong.', growth: '+56.8%' },
+            { month: 'Feb', rev2024: 11793, rev2025: 13497, rating: '⭐⭐⭐⭐', highlight: 'Traffic down 86% but revenue grew. Car Fragrance Pavilion White Tea dominated.', growth: '+14.5%' },
+            { month: 'Mar', rev2024: 18992, rev2025: 14042, rating: '⭐⭐', highlight: 'Weak performance. Lower spend per customer despite stable orders.', growth: '-26.1%' },
+            { month: 'Apr', rev2024: 11610, rev2025: 9289, rating: '⭐⭐', highlight: 'Yearly low. Seasonal slowdown + 59% traffic drop.', growth: '-20.0%' },
+            { month: 'May', rev2024: 12827, rev2025: 20637, rating: '⭐⭐⭐⭐⭐', highlight: 'Best growth (+60.9%). Summer launch success. High AOV.', growth: '+60.9%' },
+            { month: 'Jun', rev2024: 15719, rev2025: 19104, rating: '⭐⭐⭐⭐', highlight: 'Premium momentum. Returning customers doubled.', growth: '+21.5%' },
+            { month: 'Jul', rev2024: 19951, rev2025: 14775, rating: '⭐⭐', highlight: 'Mid-summer lull. New customer acquisition dropped 50%.', growth: '-25.9%' },
+            { month: 'Aug', rev2024: 19222, rev2025: 17312, rating: '⭐⭐⭐', highlight: 'Recovery begins. Returning customers +180%. Perfume sets stabilized revenue.', growth: '-9.9%' },
+            { month: 'Sep', rev2024: 16591, rev2025: 17942, rating: '⭐⭐⭐⭐', highlight: 'Steady growth. Lime & Frangipani Diffusers gained traction.', growth: '+8.1%' },
+            { month: 'Oct', rev2024: 17872, rev2025: 19244, rating: '⭐⭐⭐⭐', highlight: 'Limited Edition success. Strong retention.', growth: '+7.7%' },
+            { month: 'Nov', rev2024: 17221, rev2025: 9623, rating: '⭐', highlight: 'Strategic failure. Abandoned bestsellers too early.', growth: '-44.1%' },
+            { month: 'Dec', rev2025: 19765, rev2024: 16713, rating: '⭐⭐⭐⭐⭐', highlight: 'Strong recovery. WhatsApp ROI 600%+ saved the quarter.', growth: '+18.3%' }
+        ];
+
+        // --- DATA FROM PART 2 (STRATEGY) ---
+        const monthlyPerformanceStrategy = [
             { month: 'Jan', yr24: 11751, yr25: 18431 },
             { month: 'Feb', yr24: 11793, yr25: 13497 },
             { month: 'Mar', yr24: 18992, yr25: 14042 },
@@ -469,6 +665,16 @@
             ]
         };
 
+        // --- REPORT INTERACTION LOGIC ---
+        function updateMonthlyDetail(index) {
+            const data = monthlyDataReport[index];
+            document.getElementById('detail-month-title').innerText = data.month + ' 2025';
+            document.getElementById('detail-rating').innerText = data.rating;
+            document.getElementById('detail-revenue').innerText = `HKD ${data.rev2025.toLocaleString()} (${data.growth})`;
+            document.getElementById('detail-highlight').innerText = data.highlight;
+        }
+
+        // --- STRATEGY INTERACTION LOGIC ---
         const showGiftSet = (index) => {
             const set = giftSets[index];
             const display = document.getElementById('gift-set-display');
@@ -494,22 +700,20 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="py-6 border-y border-stone-100 text-stone-700">
                         <p class="font-bold text-stone-400 text-[10px] uppercase mb-2 tracking-widest">策略寓意</p>
-                        <p class="text-lg leading-relaxed">${set.concept}</p>
+                        <p class="text-lg leading-relaxed font-medium">${set.concept}</p>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <p class="font-bold text-stone-400 text-[10px] uppercase mb-3 tracking-widest">組合詳情</p>
                             <ul class="space-y-2 text-center md:text-left">
-                                ${set.items.map(i => `<li class="flex items-start text-stone-700 text-sm"><span class="w-1.5 h-1.5 rounded-full bg-red-700 mr-3 mt-1.5 flex-shrink-0"></span>${i}</li>`).join('')}
+                                ${set.items.map(i => `<li class="flex items-start text-stone-700 text-sm font-medium"><span class="w-1.5 h-1.5 rounded-full bg-red-700 mr-3 mt-1.5 flex-shrink-0"></span>${i}</li>`).join('')}
                             </ul>
                         </div>
                         <div>
                             <p class="font-bold text-stone-400 text-[10px] uppercase mb-3 tracking-widest">建議受眾</p>
-                            <p class="text-stone-700 font-medium text-sm mb-4">${set.target}</p>
+                            <p class="text-stone-700 font-bold text-sm mb-4">${set.target}</p>
                             ${specialHtml}
                         </div>
                     </div>
@@ -542,15 +746,11 @@
             document.getElementById('copyModal').style.display = "block";
         };
 
-        const closeModal = () => {
-            document.getElementById('copyModal').style.display = "none";
-        };
+        const closeModal = () => { document.getElementById('copyModal').style.display = "none"; };
 
         const copyText = () => {
             const text = document.getElementById('modalBody').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('文案已複製！');
-            });
+            navigator.clipboard.writeText(text).then(() => { alert('文案已複製！'); });
         };
 
         const updateForecast = (type) => {
@@ -566,19 +766,52 @@
             }
         };
 
+        // --- ONLOAD INITIALIZATION ---
         window.onload = () => {
-            const ctx = document.getElementById('annualChart').getContext('2d');
-            new Chart(ctx, {
+            // Init Report Chart
+            const ctxReport = document.getElementById('annualRevenueChartReport').getContext('2d');
+            new Chart(ctxReport, {
                 type: 'bar',
                 data: {
-                    labels: monthlyPerformance.map(d => d.month),
+                    labels: monthlyDataReport.map(d => d.month),
                     datasets: [
-                        { label: '2024 營收', data: monthlyPerformance.map(d => d.yr24), backgroundColor: '#D6D3D1', borderRadius: 4 },
-                        { label: '2025 營收', data: monthlyPerformance.map(d => d.yr25), backgroundColor: '#78716C', borderRadius: 4 }
+                        { label: '2024 Revenue', data: monthlyDataReport.map(d => d.rev2024), backgroundColor: '#d6d3d1', borderRadius: 4 },
+                        { label: '2025 Revenue', data: monthlyDataReport.map(d => d.rev2025), backgroundColor: (ctx) => monthlyDataReport[ctx.dataIndex]?.rev2025 >= monthlyDataReport[ctx.dataIndex]?.rev2024 ? '#78716c' : '#f87171', borderRadius: 4 }
+                    ]
+                },
+                options: { 
+                    responsive: true, maintainAspectRatio: false,
+                    onClick: (e, elements) => { if (elements.length > 0) { const index = elements[0].index; updateMonthlyDetail(index); document.getElementById('monthSelector').value = index; } }
+                }
+            });
+            updateMonthlyDetail(11);
+            document.getElementById('monthSelector').addEventListener('change', (e) => updateMonthlyDetail(e.target.value));
+
+            // Init Report WhatsApp ROI Chart
+            const ctxWhatsapp = document.getElementById('whatsappChart').getContext('2d');
+            new Chart(ctxWhatsapp, {
+                type: 'bar',
+                data: {
+                    labels: ['#1 (Life)', '#2 (Scarcity)'],
+                    datasets: [{ label: 'Max ROI %', data: [392, 828], backgroundColor: ['#d6d3d1', '#10b981'], borderRadius: 6 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+
+            // Init Strategy Performance Chart
+            const ctxStrategy = document.getElementById('annualChartStrategy').getContext('2d');
+            new Chart(ctxStrategy, {
+                type: 'bar',
+                data: {
+                    labels: monthlyPerformanceStrategy.map(d => d.month),
+                    datasets: [
+                        { label: '2024 營收', data: monthlyPerformanceStrategy.map(d => d.yr24), backgroundColor: '#D6D3D1', borderRadius: 4 },
+                        { label: '2025 營收', data: monthlyPerformanceStrategy.map(d => d.yr25), backgroundColor: '#78716C', borderRadius: 4 }
                     ]
                 },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } }, scales: { y: { beginAtZero: true } } }
             });
+
             showGiftSet(0);
             renderIG('jan');
         };
