@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance House HK: 12月 vs 1月 業績對比報告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fafaf9; /* stone-50 */
+            color: #44403c;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', 'Noto Sans TC', serif;
+        }
+        .metric-card {
+            background: white;
+            border: 1px solid #e7e5e4;
+            border-radius: 1.25rem;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+        }
+        .bg-alert { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .bg-success { background-color: #f0fdf4; border-left: 4px solid #22c55e; }
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; background-color: #f8f7f5; color: #78716c; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 1rem; }
+        td { padding: 1rem; border-bottom: 1px solid #f5f5f4; font-size: 0.9rem; }
+        .tab-active { border-bottom: 2px solid #44403c; color: #44403c; font-weight: 700; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-stone-900 text-stone-100 py-4 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-amber-500 rounded-full"></div>
+                <span class="serif text-xl font-bold tracking-widest uppercase">Fragrance House HK</span>
+            </div>
+            <div class="text-xs font-mono tracking-widest text-stone-400 uppercase">
+                Monthly Comparison: Dec '25 vs Jan '26
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
+
+        <!-- 1. Header -->
+        <header class="flex flex-col md:flex-row justify-between items-end gap-6">
+            <div class="space-y-2">
+                <h1 class="text-4xl font-bold text-stone-800 serif">月度業績對比分析報告</h1>
+                <p class="text-stone-500">2025年12月 vs 2026年1月 | 轉型期的季節性波動分析</p>
+            </div>
+            <div class="flex gap-3">
+                <div class="bg-red-50 text-red-700 px-4 py-2 rounded-xl border border-red-100 text-xs font-bold">
+                    ⚠️ 銷量下滑警示
+                </div>
+                <div class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl border border-emerald-100 text-xs font-bold">
+                    ✅ AOV 健康增長
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. KPI Summary Dashboard -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="metric-card">
+                <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">總銷售額</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-2xl font-bold">HKD 11,204</p>
+                    <span class="text-red-500 text-xs font-bold">▼ 43.3%</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1">12月: HKD 19,765</p>
+            </div>
+            <div class="metric-card">
+                <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">平均訂單價值 (AOV)</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-2xl font-bold">HKD 517.93</p>
+                    <span class="text-emerald-600 text-xs font-bold">▲ 2.2%</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1">12月: HKD 506.95</p>
+            </div>
+            <div class="metric-card">
+                <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">訂單數量</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-2xl font-bold">21 宗</p>
+                    <span class="text-red-500 text-xs font-bold">▼ 44.7%</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1">12月: 38 宗</p>
+            </div>
+            <div class="metric-card">
+                <p class="text-xs font-bold text-stone-400 uppercase tracking-widest">回頭客比率</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-2xl font-bold">28.6%</p>
+                    <span class="text-red-500 text-xs font-bold">▼ 11.9%</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1">12月: 40.5%</p>
+            </div>
+        </section>
+
+        <!-- 3. Signal Analysis & Root Cause -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="space-y-6">
+                <div class="bg-alert p-6 rounded-2xl shadow-sm">
+                    <h3 class="font-bold text-red-800 flex items-center mb-4">
+                        <span class="mr-2">🔴</span> 警示訊號
+                    </h3>
+                    <ul class="space-y-3 text-sm text-red-700 leading-relaxed">
+                        <li class="flex justify-between"><span>銷售額大幅下滑</span> <b>-43.3%</b></li>
+                        <li class="flex justify-between"><span>訂單量腰斬 (38 → 21)</span> <b>-44.7%</b></li>
+                        <li class="flex justify-between"><span>回頭客流失嚴重</span> <b>跌幅 62.5%</b></li>
+                        <li class="mt-4 pt-4 border-t border-red-200 italic text-xs">分析：12月大促後的消費疲勞及新年推廣延遲。</li>
+                    </ul>
+                </div>
+                <div class="bg-success p-6 rounded-2xl shadow-sm">
+                    <h3 class="font-bold text-emerald-800 flex items-center mb-4">
+                        <span class="mr-2">🟢</span> 正面訊號
+                    </h3>
+                    <ul class="space-y-3 text-sm text-emerald-700 leading-relaxed">
+                        <li class="flex justify-between"><span>客單價 (AOV) 維持健康</span> <b>HKD 518 (+2.2%)</b></li>
+                        <li class="flex justify-between"><span>折扣使用大減</span> <b>-94.4% (保護利潤率)</b></li>
+                        <li class="flex justify-between"><span>新客訂單佔比提升</span> <b>71.4% (流量轉向新客)</b></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-stone-200">
+                <h3 class="text-xl font-bold text-stone-800 mb-6 serif border-b pb-4">業績落差原因分析</h3>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-1 bg-amber-500 rounded-full h-auto"></div>
+                        <div>
+                            <p class="font-bold text-stone-700">季節性因素與促銷差異</p>
+                            <p class="text-xs text-stone-500 mt-1">12月聖誕潮 vs 1月淡季。12月折扣達 HKD 2,649，1月僅 HKD 148，缺乏促銷引力。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1 bg-stone-300 rounded-full h-auto"></div>
+                        <div>
+                            <p class="font-bold text-stone-700">產品組合轉換</p>
+                            <p class="text-xs text-stone-500 mt-1">聖誕限定下架，新春系列（27/1）推出太晚，僅剩 4 天數據計入 1 月。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1 bg-stone-300 rounded-full h-auto"></div>
+                        <div>
+                            <p class="font-bold text-stone-700">營銷空窗期</p>
+                            <p class="text-xs text-stone-500 mt-1">1月1日至26日缺乏大規模推廣，導致回頭客活躍度驟降。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Top 10 Bestsellers Comparison -->
+        <section class="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm">
+            <div class="bg-stone-800 p-6 flex justify-between items-center text-white">
+                <h2 class="text-xl font-bold serif">暢銷產品排名對比分析</h2>
+                <span class="text-xs opacity-60">Top 10 Performance Mix</span>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 divide-x divide-stone-100">
+                <!-- Dec 2025 -->
+                <div class="p-6">
+                    <h3 class="text-sm font-black text-stone-400 uppercase tracking-[0.2em] mb-4">🏆 2025年12月 (聖誕月)</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>排名</th><th>產品名稱</th><th>營收</th><th>訂單</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td class="font-bold">Pavilion White Tea EDP</td><td>1,132</td><td>3</td></tr>
+                                <tr><td>2</td><td>Summer Limited Gift Set</td><td>1,056</td><td>2</td></tr>
+                                <tr><td>3</td><td>Ocean & Cedarwood Diffuser</td><td>995</td><td>3</td></tr>
+                                <tr><td>4</td><td>White Musk EDP</td><td>957</td><td>1</td></tr>
+                                <tr><td>5</td><td>Cinnamon Roll Limited 🎄</td><td>776</td><td>1</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-[10px] text-stone-400 mt-4 italic text-right">* 僅列出前五名，完整列表請參閱附件</p>
+                    </div>
+                </div>
+                <!-- Jan 2026 -->
+                <div class="p-6 bg-stone-50/50">
+                    <h3 class="text-sm font-black text-amber-600 uppercase tracking-[0.2em] mb-4 text-amber-700">🏆 2026年1月 (新春月)</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>排名</th><th>產品名稱</th><th>營收</th><th>訂單</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-amber-100/50"><td>1</td><td class="font-bold">Knit Mangolia | Limited</td><td>1,104</td><td>3</td></tr>
+                                <tr class="bg-amber-100/30"><td>2</td><td class="font-bold">【🍵 CNY Bestseller Duo】</td><td>983</td><td>2</td></tr>
+                                <tr><td>3</td><td>Pavilion White Tea EDP</td><td>736</td><td>2</td></tr>
+                                <tr><td>4</td><td>White Michelia Diffuser</td><td>592</td><td>2</td></tr>
+                                <tr><td>5</td><td>🥇Top-Rated Perfume Set</td><td>515</td><td>1</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-[10px] text-amber-600 mt-4 italic text-right font-bold">* 新春限定及限量版迅速佔領榜首</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Category Analysis -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-white p-8 rounded-2xl border border-stone-200">
+                <h3 class="text-xl font-bold text-stone-800 mb-6 serif">類別銷售佔比變化</h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-2"><span>限量版/新春系列</span> <span class="text-amber-600">↑ 35%</span></div>
+                        <div class="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-amber-500 h-full" style="width: 35%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-2"><span>香水系列</span> <span class="text-stone-400">↓ 25%</span></div>
+                        <div class="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-stone-500 h-full" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-2"><span>擴香系列</span> <span class="text-stone-400">↓ 20%</span></div>
+                        <div class="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-stone-400 h-full" style="width: 20%"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-stone-500 mt-8 italic leading-relaxed">
+                    洞察：1月產品組合高度集中於「限定款」，常規產品線（香水、擴香）銷售佔比全面下降，顯示品牌過度依賴季節性話題。
+                </p>
+            </div>
+
+            <div class="lg:col-span-2 bg-stone-900 text-stone-50 rounded-2xl p-8 flex flex-col justify-between shadow-xl">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2 serif text-amber-400">產品表現趨勢</h3>
+                    <p class="text-stone-400 text-sm mb-8 italic">Pavilion White Tea 與 White Michelia 依然是維持基底的「常青樹」。</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-stone-800 p-5 rounded-xl border border-stone-700">
+                            <h4 class="text-sm font-black uppercase text-stone-400 mb-3 tracking-widest">📈 1月新晉明星</h4>
+                            <p class="text-lg font-bold">Knit Mangolia</p>
+                            <p class="text-xs text-stone-500 mt-2">來自社交媒體導流，成交 3 宗，展現強大爆發力。</p>
+                        </div>
+                        <div class="bg-stone-800 p-5 rounded-xl border border-stone-700">
+                            <h4 class="text-sm font-black uppercase text-stone-400 mb-3 tracking-widest">📉 1月消失名單</h4>
+                            <p class="text-lg font-bold text-red-400">Christmas & Summer Sets</p>
+                            <p class="text-xs text-stone-500 mt-2">季節不符導致銷量掛零，產品汰換正確但新舊交替期過長。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-stone-800 flex justify-between items-center">
+                    <p class="text-sm text-stone-400">結論：常規產品需要持續推廣，不應隨限定款推出而暫停。</p>
+                    <div class="px-4 py-1 bg-amber-500 text-black text-[10px] font-black rounded-full uppercase">SKU 策略：優化中</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Strategic Recommendations -->
+        <section class="bg-amber-50 border border-amber-200 rounded-[3rem] p-10 md:p-16 space-y-12">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl font-bold serif text-amber-900">2 月份戰略重心與行動清單</h2>
+                <p class="text-amber-800 max-w-2xl mx-auto font-medium">基於對比分析，我們必須在農曆新年前後立即行動，挽回 1 月份的流失額度。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Priority 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-amber-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold mb-6">1</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-4">挽回流失的回頭客</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed mb-6">回頭客訂單暴跌 62.5%，必須針對 12 月大促客戶發送<b>「專屬召回優惠」</b>(15% OFF)，有效期至 15/2。</p>
+                    </div>
+                    <p class="text-xs font-bold text-red-600 uppercase tracking-widest">目標：召回至少 5 位</p>
+                </div>
+                <!-- Priority 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-amber-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold mb-6">2</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-4">加速新春套裝推廣</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed mb-6">1月僅宣傳 4 天。本週必須發送 <b>2 次 WhatsApp 廣播</b>：主打套裝 #4 + 「最後召集」倒數文案。</p>
+                    </div>
+                    <p class="text-xs font-bold text-amber-600 uppercase tracking-widest">目標：銷售 15-20 套</p>
+                </div>
+                <!-- Priority 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-amber-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-stone-800 text-white rounded-full flex items-center justify-center font-bold mb-6">3</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-4">重啟常青產品推廣</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed mb-6">利用白茶與白蘭花的「補貨回歸」話題，製作<b>「經典必買組合」</b>，定價 HKD 880 (9折) 推動穩健收入。</p>
+                    </div>
+                    <p class="text-xs font-bold text-stone-600 uppercase tracking-widest">目標：穩定月銷 10k+</p>
+                </div>
+            </div>
+
+            <!-- Future Planning -->
+            <div class="mt-8 bg-amber-100/50 p-8 rounded-3xl border border-amber-200">
+                <h4 class="font-bold text-amber-900 mb-6 uppercase tracking-widest text-sm text-center">📅 中期策略：優化推出時間表</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-4 bg-white rounded-xl text-xs"><b>春季系列</b><br>2月推出</div>
+                    <div class="p-4 bg-white rounded-xl text-xs"><b>夏季系列</b><br>4月推出</div>
+                    <div class="p-4 bg-white rounded-xl text-xs"><b>中秋系列</b><br>7月推出</div>
+                    <div class="p-4 bg-white rounded-xl text-xs"><b>聖誕系列</b><br>10月推出</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Future Targets -->
+        <section class="bg-white rounded-3xl border border-stone-200 p-10 shadow-sm text-center">
+            <h2 class="text-2xl font-bold text-stone-800 serif mb-10">2 月份業績挑戰目標</h2>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="space-y-2">
+                    <p class="text-stone-400 text-xs font-bold uppercase tracking-widest">銷售額目標</p>
+                    <p class="text-3xl font-bold">HKD 25,000</p>
+                    <p class="text-[10px] text-stone-500">1月實際: HKD 11,204</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-stone-400 text-xs font-bold uppercase tracking-widest">訂單數目標</p>
+                    <p class="text-3xl font-bold">45 宗</p>
+                    <p class="text-[10px] text-stone-500">1月實際: 21 宗</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-stone-400 text-xs font-bold uppercase tracking-widest">AOV 目標</p>
+                    <p class="text-3xl font-bold">HKD 555</p>
+                    <p class="text-[10px] text-stone-500">1月實際: HKD 518</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-stone-400 text-xs font-bold uppercase tracking-widest">回頭客目標</p>
+                    <p class="text-3xl font-bold">35%</p>
+                    <p class="text-[10px] text-stone-500">1月實際: 28.6%</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-16">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
+            <p class="serif font-bold text-stone-200 text-2xl tracking-widest uppercase">Fragrance House HK</p>
+            <p class="text-xs font-black text-stone-500 uppercase tracking-[0.3em]">Data-Driven Performance Report • 內部機密文件</p>
+            <div class="pt-12 border-t border-stone-800 text-[10px] text-stone-600">
+                &copy; 2026 Fragrance House HK. 基於 2025 年 12 月及 2026 年 1 月真實數據分析
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            // Strategy Chart Logic (Doughnut)
+            const ctx = document.getElementById('strategyChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['限定系列', '新春套裝', '常規香水', '其他'],
+                    datasets: [{
+                        data: [20, 15, 25, 40],
+                        backgroundColor: ['#d97706', '#f59e0b', '#78716c', '#d6d3d1'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
