@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance House: 17-Day Performance Diagnostic Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fafaf9; /* stone-50 */
+            color: #44403c;
+        }
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', 'Noto Sans TC', serif;
+        }
+        .metric-card {
+            background: white;
+            border: 1px solid #e7e5e4;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .trend-down { color: #dc2626; font-weight: bold; }
+        .trend-up { color: #16a34a; font-weight: bold; }
+        .alert-box { background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 1rem; padding: 1.5rem; }
+        .success-box { background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 1rem; padding: 1.5rem; }
+        .chart-container { position: relative; height: 300px; width: 100%; }
+        .progress-bar { height: 8px; border-radius: 4px; background-color: #e7e5e4; overflow: hidden; }
+        .progress-fill { height: 100%; background-color: #44403c; }
+        .rank-badge { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; background: #44403c; color: white; border-radius: 50%; font-size: 10px; font-weight: bold; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
+                <span class="serif font-bold tracking-widest text-lg uppercase">Fragrance House HK</span>
+            </div>
+            <div class="text-[10px] font-black tracking-widest text-stone-400 uppercase">
+                Diagnostic Report: Feb 24 - Mar 12, 2026
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
+
+        <!-- Header -->
+        <header class="space-y-4">
+            <div class="inline-block px-3 py-1 bg-red-100 text-red-700 text-[10px] font-black uppercase tracking-widest rounded-full mb-2">
+                ⚠️ Critical Alert: 17-Day Cycle Analysis
+            </div>
+            <h1 class="text-4xl font-bold text-stone-800 serif leading-tight">Comprehensive Performance Report (MoM)</h1>
+            <div class="flex flex-col md:flex-row gap-4 text-stone-500 text-sm">
+                <p><b>Current Period:</b> Feb 24 - Mar 12, 2026 (17 Days)</p>
+                <p><b>Previous Period:</b> Feb 7 - Feb 23, 2026 (17 Days)</p>
+            </div>
+        </header>
+
+        <!-- Section 1: Executive KPI Dashboard -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="metric-card border-red-200">
+                <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">Total Sales Revenue</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-3xl font-bold">HKD 12,679</p>
+                    <span class="trend-down text-xs">▼ 37.1% ⚠️</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1 italic">Previous: HKD 20,144</p>
+            </div>
+            <div class="metric-card border-red-200">
+                <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">Order Quantity</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-3xl font-bold">24 Orders</p>
+                    <span class="trend-down text-xs">▼ 27.3% ⚠️</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1 italic">Previous: 33 Orders</p>
+            </div>
+            <div class="metric-card border-red-200">
+                <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">Avg Order Value (AOV)</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-3xl font-bold">HKD 512.25</p>
+                    <span class="trend-down text-xs">▼ 14.9% ⚠️</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1 italic">Previous: HKD 601.93</p>
+            </div>
+            <div class="metric-card">
+                <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">Returning Customer Rate</p>
+                <div class="flex items-baseline space-x-2 mt-2">
+                    <p class="text-3xl font-bold">25.0%</p>
+                    <span class="text-red-500 text-xs font-bold">▼ 14.3%</span>
+                </div>
+                <p class="text-[10px] text-stone-400 mt-1 italic">17 New / 6 Returning</p>
+            </div>
+        </section>
+
+        <div class="alert-box">
+            <h4 class="font-bold text-red-800 flex items-center mb-2">⚠️ Key Alert: Universal Decline in Core Metrics</h4>
+            <p class="text-sm text-red-700 leading-relaxed">Revenue has dropped by more than 1/3, with all conversion and traffic data triggering red alerts. The decline in traffic (7.1%) is significantly lower than the decline in revenue (37.1%), indicating that <b>Conversion Efficiency</b> deterioration is the most critical current issue.</p>
+        </div>
+
+        <!-- Section 2: Traffic & Sources Analysis -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-white p-8 rounded-[2rem] border border-stone-200 shadow-sm">
+                <h3 class="text-xl font-bold serif mb-6">Traffic Source Analysis</h3>
+                <div class="chart-container">
+                    <canvas id="trafficChart"></canvas>
+                </div>
+                <div class="mt-8 overflow-x-auto">
+                    <table class="w-full text-xs text-left">
+                        <thead class="bg-stone-50 font-black text-stone-400 uppercase">
+                            <tr>
+                                <th class="p-3">Source</th>
+                                <th class="p-3 text-center">Current Sessions</th>
+                                <th class="p-3 text-center">Previous Sessions</th>
+                                <th class="p-3 text-center">Change</th>
+                                <th class="p-3 text-center text-red-500">CVR Change</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-100">
+                            <tr><td class="p-3 font-bold">Unattributed (Direct/Null)</td><td class="p-3 text-center">1,396</td><td class="p-3 text-center">1,471</td><td class="p-3 text-center text-red-500">-5.1%</td><td class="p-3 text-center text-red-500">-18.2%</td></tr>
+                            <tr class="bg-stone-50"><td class="p-3 font-bold text-stone-800">Facebook</td><td class="p-3 text-center">493</td><td class="p-3 text-center">606</td><td class="p-3 text-center text-red-500">-18.6%</td><td class="p-3 text-center text-emerald-600 font-bold">+5.2% ✅</td></tr>
+                            <tr><td class="p-3 font-bold text-emerald-700">Google</td><td class="p-3 text-center">435</td><td class="p-3 text-center">441</td><td class="p-3 text-center">-1.4%</td><td class="p-3 text-center text-emerald-600 font-bold">+1.3% ✅</td></tr>
+                            <tr class="bg-red-50"><td class="p-3 font-bold text-red-700">Instagram</td><td class="p-3 text-center">430</td><td class="p-3 text-center">492</td><td class="p-3 text-center text-red-500">-12.6%</td><td class="p-3 text-center text-red-700 font-black">-77.5% 🚨</td></tr>
+                            <tr><td class="p-3 font-bold">Threads</td><td class="p-3 text-center">40</td><td class="p-3 text-center">25</td><td class="p-3 text-center text-emerald-600">+60%</td><td class="p-3 text-center">-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-stone-800 text-stone-100 p-8 rounded-[2rem] shadow-xl">
+                    <h4 class="text-sm font-black uppercase tracking-widest text-stone-400 mb-6">Sessions by Device Type</h4>
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs"><span>Mobile</span> <span>76.2%</span></div>
+                            <div class="progress-bar bg-stone-700"><div class="progress-fill bg-amber-400" style="width: 76.2%"></div></div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs"><span>Desktop</span> <span>23.3%</span></div>
+                            <div class="progress-bar bg-stone-700"><div class="progress-fill bg-stone-500" style="width: 23.3%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <h4 class="font-bold text-sm mb-4">💡 Traffic Insights</h4>
+                    <ul class="text-xs space-y-3 leading-relaxed">
+                        <li class="flex gap-2 text-red-600 font-bold"><span>⚠️</span> Social Media traffic dropped 15.7%, representing the primary source of traffic loss.</li>
+                        <li class="flex gap-2 text-stone-700"><span>✅</span> Search Engine traffic saw a slight increase of 2.6%, but this was insufficient to offset Social Media losses.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Conversion Funnel Analysis -->
+        <section class="bg-white p-8 rounded-[2.5rem] border border-stone-200 shadow-sm overflow-hidden text-stone-800">
+            <h3 class="text-xl font-bold serif mb-8 text-center">Conversion Funnel Deterioration</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-stone-50 p-6 rounded-2xl text-center">
+                    <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Overall CVR</p>
+                    <p class="text-3xl font-bold text-red-600">0.84%</p>
+                    <p class="text-[10px] text-red-400 font-black mt-1">▼ 19.2% 🚨</p>
+                    <p class="text-[10px] text-stone-400 mt-1">Prev: 1.04%</p>
+                </div>
+                <div class="bg-stone-50 p-6 rounded-2xl text-center">
+                    <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Add-to-Cart Rate</p>
+                    <p class="text-3xl font-bold">3.12%</p>
+                    <p class="text-[10px] text-red-400 font-black mt-1">▼ 8.8% ⚠️</p>
+                    <p class="text-[10px] text-stone-400 mt-1">Prev: 3.42%</p>
+                </div>
+                <div class="bg-stone-50 p-6 rounded-2xl text-center">
+                    <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Reached Checkout</p>
+                    <p class="text-3xl font-bold">66 Times</p>
+                    <p class="text-[10px] text-red-400 font-black mt-1">▼ 14.3%</p>
+                    <p class="text-[10px] text-stone-400 mt-1">Prev: 77 Times</p>
+                </div>
+                <div class="bg-red-50 p-6 rounded-2xl text-center border border-red-100">
+                    <p class="text-[10px] font-black text-red-400 uppercase tracking-widest mb-1">Abandoned Cart Rate</p>
+                    <p class="text-3xl font-bold text-red-700">63.6%</p>
+                    <p class="text-[10px] text-red-600 font-black mt-1">▲ 5.2% 🚨</p>
+                    <p class="text-[10px] text-red-400 mt-1">Prev: 58.4%</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-xs text-stone-500 italic">
+                * Performance is deteriorating at every stage of the funnel. Even when traffic is secured, it fails to convert into orders effectively.
+            </div>
+        </section>
+
+        <!-- Section 4: Detailed Channel Deep Dive -->
+        <section class="space-y-6">
+            <h3 class="text-2xl font-bold serif">Channel Revenue Performance & Diagnosis</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Google -->
+                <div class="success-box flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-black uppercase tracking-widest text-emerald-700">Google Search</span>
+                            <span class="bg-emerald-200 text-emerald-800 text-[9px] px-2 py-0.5 rounded font-bold uppercase">Strongest Growth</span>
+                        </div>
+                        <p class="text-3xl font-bold text-emerald-900">HKD 3,460</p>
+                        <p class="text-xs text-emerald-600 font-bold mt-1">▲ 21.1% 🚀 (Prev $2,856)</p>
+                    </div>
+                    <div class="mt-6 space-y-2 text-xs">
+                        <div class="flex justify-between"><span>Orders:</span> <span class="font-bold">7 (+40%)</span></div>
+                        <div class="flex justify-between"><span>CVR:</span> <span class="font-bold text-emerald-700">1.61% ✅</span></div>
+                        <p class="text-[10px] text-emerald-800 mt-3 pt-3 border-t border-emerald-200 italic font-medium">Analysis: The only major channel showing positive growth. Conversion rate remains highest here.</p>
+                    </div>
+                </div>
+
+                <!-- Facebook -->
+                <div class="metric-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-black uppercase tracking-widest text-stone-500">Facebook</span>
+                            <span class="bg-stone-200 text-stone-600 text-[9px] px-2 py-0.5 rounded font-bold uppercase">Stable Quality</span>
+                        </div>
+                        <p class="text-3xl font-bold">HKD 3,078</p>
+                        <p class="text-xs text-red-500 font-bold mt-1">▼ 19.7% (Prev $3,833)</p>
+                    </div>
+                    <div class="mt-6 space-y-2 text-xs">
+                        <div class="flex justify-between"><span>Orders:</span> <span class="font-bold">6 (-14%)</span></div>
+                        <div class="flex justify-between"><span>CVR:</span> <span class="font-bold text-emerald-700">1.22% ✅</span></div>
+                        <p class="text-[10px] text-stone-500 mt-3 pt-3 border-t border-stone-100 italic">Analysis: Revenue dropped due to lower traffic, but conversion efficiency actually improved slightly.</p>
+                    </div>
+                </div>
+
+                <!-- Instagram -->
+                <div class="alert-box flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-black uppercase tracking-widest text-red-700">Instagram</span>
+                            <span class="bg-red-200 text-red-800 text-[9px] px-2 py-0.5 rounded font-bold uppercase">CRITICAL FAILURE</span>
+                        </div>
+                        <p class="text-3xl font-bold text-red-900">HKD 652</p>
+                        <p class="text-xs text-red-600 font-bold mt-1">▼ 73.1% 🚨 (Prev $2,428)</p>
+                    </div>
+                    <div class="mt-6 space-y-2 text-xs">
+                        <div class="flex justify-between"><span>Orders:</span> <span class="font-bold text-red-600">1 (-75%)</span></div>
+                        <div class="flex justify-between"><span>CVR:</span> <span class="font-bold text-red-700 font-black">0.23% 🚨</span></div>
+                        <p class="text-[10px] text-red-800 mt-3 pt-3 border-t border-red-200 italic font-bold">Analysis: Catastrophic decline. CVR plummeted by 77%. Immediate strategy review required.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Sources Table -->
+            <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden mt-8">
+                <table class="w-full text-xs text-left">
+                    <thead class="bg-stone-50 font-black text-stone-400 uppercase">
+                        <tr>
+                            <th class="p-4">Channel Analysis</th>
+                            <th class="p-4">Revenue</th>
+                            <th class="p-4">Orders</th>
+                            <th class="p-4">AOV</th>
+                            <th class="p-4">Analysis</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-stone-100">
+                        <tr>
+                            <td class="p-4 font-bold">Site Navigation (fragrancehousehk)</td>
+                            <td class="p-4 text-emerald-600 font-bold">HKD 2,225 (+63%) 🚀</td>
+                            <td class="p-4">4</td>
+                            <td class="p-4">HKD 547.50 (+23%)</td>
+                            <td class="p-4 text-stone-500">In-site conversion saw significant growth, indicating effective UI/UX optimizations.</td>
+                        </tr>
+                        <tr class="bg-red-50">
+                            <td class="p-4 font-bold text-red-700">Unattributed (Null)</td>
+                            <td class="p-4 text-red-600">HKD 3,264 (-55%)</td>
+                            <td class="p-4">6</td>
+                            <td class="p-4">HKD 532.33 (-26%)</td>
+                            <td class="p-4 text-stone-500">Untracked orders decreased sharply, yet still account for 25.7% of revenue.</td>
+                        </tr>
+                        <tr class="bg-red-100">
+                            <td class="p-4 font-bold text-red-800">Shopify (Shop App)</td>
+                            <td class="p-4 text-red-600 font-bold">HKD 0 (-100%) 🚨</td>
+                            <td class="p-4">0</td>
+                            <td class="p-4">-</td>
+                            <td class="p-4 text-red-700 font-bold">Traffic source completely vanished. Potential disruption in Shop App recommendations or Shopify ecosystem.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 5: Product Performance Comparison -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white rounded-[2rem] border border-stone-200 overflow-hidden shadow-sm">
+                <div class="bg-stone-800 p-6 text-white flex justify-between items-center">
+                    <h3 class="text-xl font-bold serif">Top 10 Bestsellers</h3>
+                    <span class="text-[10px] font-black opacity-60 uppercase">FEB 24 - MAR 12</span>
+                </div>
+                <div class="p-4 overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="border-b border-stone-100 text-stone-400 font-black uppercase"><th class="p-3">Rank</th><th class="p-3">Product Name</th><th class="p-3">Revenue</th><th class="p-3">Sold</th><th class="p-3">AOV</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-50">
+                            <tr class="hover:bg-amber-50/20 transition-colors">
+                                <td class="p-3"><div class="rank-badge">1</div></td>
+                                <td class="p-3 font-bold">Eau de Parfum | White Musk 🏆</td>
+                                <td class="p-3">HKD 3,032</td>
+                                <td class="p-3 text-emerald-600 font-bold">9 Units (+8%)</td>
+                                <td class="p-3">HKD 433</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/20 transition-colors">
+                                <td class="p-3"><div class="rank-badge">2</div></td>
+                                <td class="p-3 font-bold">Reeds Diffuser | Bergamot 🆕</td>
+                                <td class="p-3">HKD 744</td>
+                                <td class="p-3">3 Units</td>
+                                <td class="p-3">HKD 744</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/20 transition-colors">
+                                <td class="p-3"><div class="rank-badge">3</div></td>
+                                <td class="p-3 font-bold">Eau de Parfum | Peach 🆕</td>
+                                <td class="p-3">HKD 736</td>
+                                <td class="p-3">2 Units</td>
+                                <td class="p-3">HKD 736</td>
+                            </tr>
+                            <tr class="bg-red-50/50">
+                                <td class="p-3 text-stone-300">6</td>
+                                <td class="p-3 text-stone-600 font-bold italic">Complete 6+6 Fragrance Pack ⚠️</td>
+                                <td class="p-3">HKD 688</td>
+                                <td class="p-3 text-red-500 font-bold">1 Unit (-67%)</td>
+                                <td class="p-3">HKD 688</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="success-box">
+                    <h4 class="font-bold text-emerald-800 text-sm mb-4">✅ Product Performance Highlights</h4>
+                    <ul class="text-xs space-y-3 leading-relaxed text-emerald-900 font-medium">
+                        <li class="flex gap-2"><span>🏆</span> <b>White Musk Dominance:</b> Ranked #1 for two consecutive periods, with revenue growing by 8.1%. Strong cross-category performance (Perfume + Car).</li>
+                        <li class="flex gap-2"><span>🆕</span> <b>Strong Newcomer Performance:</b> Bergamot Diffuser and Peach Perfume entered at #2 and #3, showing high customer receptivity to new scents.</li>
+                    </ul>
+                </div>
+                <div class="alert-box">
+                    <h4 class="font-bold text-red-800 text-sm mb-4">🚨 Vanished Favorites (Dropped from Top 10)</h4>
+                    <ul class="text-[11px] text-red-700 space-y-2 italic font-bold">
+                        <li>• Top-Rated Perfume Set (Prev #3) - Completely Vanished 🚨</li>
+                        <li>• Reeds Diffuser | White Musk (Prev #4) - Dropped off</li>
+                        <li>• CNY Series Products - Seasonal cycle ended post-LNY</li>
+                        <li>• <b>High-Value Bundle Crisis:</b> Complete 6+6 Pack revenue fell by 66.7%.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Root Cause & Action Plan -->
+        <section class="space-y-12">
+            <div class="bg-stone-900 text-white p-12 rounded-[3rem] shadow-2xl relative overflow-hidden">
+                <h2 class="text-3xl font-bold serif text-amber-400 mb-10">🚨 Root Cause Diagnosis & Strategic Analysis</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-amber-300 uppercase tracking-widest text-xs">Diagnosis 1: Instagram CVR Catastrophe (0.23%)</h4>
+                        <p class="opacity-80 leading-relaxed font-medium">Caused by creative fatigue and the gap following LNY seasonal products. Current ads may be targeting low-intent users or suffering from iOS tracking optimization issues. Pause underperforming ads immediately.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-amber-300 uppercase tracking-widest text-xs">Diagnosis 2: High-Value Bundle Sales Collapse</h4>
+                        <p class="opacity-80 leading-relaxed font-medium">Lunar New Year gift demand has ended, and a lack of specific March (Women's Day/Spring) themed promotions has led to a 15% drop in AOV.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-amber-300 uppercase tracking-widest text-xs">Diagnosis 3: Shopify Ecosystem Traffic Disappearance</h4>
+                        <p class="opacity-80 leading-relaxed font-medium">Revenue fell from $2,327 to $0. Requires urgent investigation into Shop App settings, inventory visibility, or algorithm shifts.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-amber-300 uppercase tracking-widest text-xs">Diagnosis 4: Increased Checkout Abandonment (+5.2%)</h4>
+                        <p class="opacity-80 leading-relaxed font-medium">Mobile checkout experience (76% of traffic) likely contains friction points. Unexpected shipping costs or lack of trust signals are causing hesitation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Plan Tabs -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-red-800 text-white p-8 rounded-[2rem] shadow-xl">
+                    <h3 class="text-xl font-bold serif text-amber-300 mb-6">🚨 Week 1: Intervention Plan (Mar 13-19)</h3>
+                    <ul class="text-xs space-y-4 font-bold opacity-90">
+                        <li class="border-l-2 border-amber-400 pl-4"><b>Fix Instagram Ads:</b> Pause all ads with CVR <0.5%. Design new Reels creatives centered on White Musk (Proven bestseller).</li>
+                        <li class="border-l-2 border-amber-400 pl-4"><b>Emergency Promotion:</b> Launch "Spring Pamper" theme. Offer free shipping for orders >$600 + free samples. Promote 15% OFF for bundles.</li>
+                        <li class="border-l-2 border-amber-400 pl-4"><b>Increase Google Investment:</b> Raise budget by 30% for the only growing channel. Strengthen brand keyword bidding and test Google Shopping.</li>
+                        <li class="border-l-2 border-amber-400 pl-4"><b>Optimize Checkout:</b> Full mobile audit of the payment flow. Ensure load speeds < 3s and add a free shipping progress bar.</li>
+                    </ul>
+                </div>
+                <div class="bg-stone-200 text-stone-800 p-8 rounded-[2rem]">
+                    <h3 class="text-xl font-bold serif mb-6">📈 Week 2: Recovery Plan (Mar 20-26)</h3>
+                    <ul class="text-xs space-y-4 font-bold">
+                        <li class="border-l-2 border-stone-800 pl-4"><b>Reactivate High-Value Products:</b> Launch "White Musk Signature Bundle" (Perfume + Diffuser + Car). Price at $1,200 (Value $1,400).</li>
+                        <li class="border-l-2 border-stone-800 pl-4"><b>Restore Shopify Traffic:</b> Audit Shop App settings, optimize descriptions, and incentivize recent buyers to leave 5-star reviews.</li>
+                        <li class="border-l-2 border-stone-800 pl-4"><b>Social Content Strategy:</b> Post 3-5 high-quality organic lifestyle scenes. Collaborating with local KOCs for "Spring Aura" proof.</li>
+                        <li class="border-l-2 border-stone-800 pl-4"><b>Retention Sequences:</b> Send exclusive codes to February buyers. Set up 60-day automated repurchase reminder emails.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Summary Comparison Table -->
+        <section class="bg-white p-8 rounded-[2.5rem] border border-stone-200 overflow-hidden shadow-sm">
+            <h3 class="text-xl font-bold serif mb-6">Key Indicator Summary (MoM Comparison)</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-stone-50 font-black text-stone-400 uppercase">
+                        <tr><th class="p-4">Indicator</th><th class="p-4">Current (2/24-3/12)</th><th class="p-4">Previous (2/7-2/23)</th><th class="p-4">Change</th><th class="p-4">Status</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-stone-100 font-bold">
+                        <tr><td class="p-4">Total Sales Revenue</td><td class="p-4">HKD 12,679</td><td class="p-4">HKD 20,144</td><td class="p-4 text-red-600">-37.1%</td><td class="p-4">🚨</td></tr>
+                        <tr><td class="p-4">Order Quantity</td><td class="p-4">24</td><td class="p-4">33</td><td class="p-4 text-red-500">-27.3%</td><td class="p-4">⚠️</td></tr>
+                        <tr><td class="p-4">Overall CVR</td><td class="p-4">0.84%</td><td class="p-4">1.04%</td><td class="p-4 text-red-600">-19.2%</td><td class="p-4">🚨</td></tr>
+                        <tr><td class="p-4 text-emerald-700">Google Revenue</td><td class="p-4">HKD 3,460</td><td class="p-4">HKD 2,856</td><td class="p-4 text-emerald-600">+21.1%</td><td class="p-4">✅</td></tr>
+                        <tr class="bg-red-50"><td class="p-4 text-red-700">Instagram Revenue</td><td class="p-4">HKD 652</td><td class="p-4">HKD 2,428</td><td class="p-4 text-red-700">-73.1%</td><td class="p-4">🚨</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-stone-200 py-12 text-center text-stone-400 text-[10px] uppercase font-black tracking-widest">
+        Fragrance House HK &copy; 2026 Internal BI Report • All Data Preserved
+    </footer>
+
+    <script>
+        window.onload = function() {
+            // Traffic Chart Logic
+            const ctxTraffic = document.getElementById('trafficChart').getContext('2d');
+            new Chart(ctxTraffic, {
+                type: 'bar',
+                data: {
+                    labels: ['Unattributed', 'Social Media', 'Search Engine', 'Other'],
+                    datasets: [
+                        {
+                            label: 'Current Sessions',
+                            data: [1391, 927, 473, 60],
+                            backgroundColor: '#44403c',
+                            borderRadius: 8
+                        },
+                        {
+                            label: 'Previous Sessions',
+                            data: [1471, 1099, 461, 39],
+                            backgroundColor: '#e7e5e4',
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 10 } } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
