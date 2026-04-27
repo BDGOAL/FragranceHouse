@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance House: 4月績效分析與對比報告 (Mar 28 - Apr 27, 2026)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fafaf9;
+            color: #44403c;
+        }
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', 'Noto Sans TC', serif;
+        }
+        .metric-card {
+            background: white;
+            border: 1px solid #e7e5e4;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .chart-container { position: relative; height: 320px; width: 100%; }
+        .rank-badge { 
+            width: 28px; height: 28px; 
+            display: flex; align-items: center; justify-content: center; 
+            background: #44403c; color: white; 
+            border-radius: 50%; font-size: 11px; font-weight: 700;
+        }
+        .sticky-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e7e5e4;
+        }
+        .comparison-tag-up { background-color: #f0fdf4; color: #166534; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: bold; }
+        .comparison-tag-down { background-color: #fef2f2; color: #991b1b; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: bold; }
+    </style>
+</head>
+<body class="antialiased text-stone-800">
+
+    <!-- Header & Navigation -->
+    <nav class="sticky-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-stone-800 rounded-full"></div>
+                <span class="serif font-bold tracking-widest text-lg uppercase">Fragrance House HK</span>
+            </div>
+            <div class="text-[10px] font-black tracking-widest text-stone-400 uppercase">
+                Diagnostic Comparison: Mar 28 – Apr 27, 2026 vs Feb 28 – Mar 27, 2026
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-10 space-y-20">
+
+        <!-- PART 1: OVERALL PERFORMANCE COMPARISON -->
+        <section class="space-y-10">
+            <header class="flex flex-col md:flex-row justify-between items-end gap-6">
+                <div class="space-y-4">
+                    <h1 class="text-5xl font-bold text-stone-800 serif">4月績效對比報告</h1>
+                    <p class="text-stone-500 text-lg">
+                        當期 (3/28–4/27, 31天) vs 對比期 (2/28–3/27, 28天)
+                        <span class="block text-xs mt-1 italic text-stone-400">⚠️ 兩期天數不同（31 vs 28），日均指標較具比較價值。</span>
+                    </p>
+                </div>
+            </header>
+
+            <!-- KPI Comparison Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="metric-card">
+                    <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">日均銷售額 (Daily Avg)</p>
+                    <div class="flex items-baseline space-x-2 mt-2">
+                        <p class="text-3xl font-bold">$588.27</p>
+                        <span class="comparison-tag-down">▼ 31.2%</span>
+                    </div>
+                    <p class="text-[10px] text-stone-400 mt-1">對比期日均: $855.25</p>
+                </div>
+                <div class="metric-card">
+                    <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">日均訂單數 (Daily Orders)</p>
+                    <div class="flex items-baseline space-x-2 mt-2">
+                        <p class="text-3xl font-bold">1.48 /天</p>
+                        <span class="comparison-tag-down">▼ 11.9%</span>
+                    </div>
+                    <p class="text-[10px] text-stone-400 mt-1">對比期日均: 1.68 /天</p>
+                </div>
+                <div class="metric-card">
+                    <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">整體轉化率 (CVR)</p>
+                    <div class="flex items-baseline space-x-2 mt-2">
+                        <p class="text-3xl font-bold">0.80%</p>
+                        <span class="comparison-tag-down">▼ 8.0%</span>
+                    </div>
+                    <p class="text-[10px] text-stone-400 mt-1">對比期 CVR: 0.87%</p>
+                </div>
+                <div class="metric-card">
+                    <p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">平均訂單價值 (AOV)</p>
+                    <div class="flex items-baseline space-x-2 mt-2">
+                        <p class="text-3xl font-bold">$373.62</p>
+                        <span class="comparison-tag-down">▼ 24.2%</span>
+                    </div>
+                    <p class="text-[10px] text-stone-400 mt-1">對比期 AOV: $492.60</p>
+                </div>
+            </div>
+
+            <!-- Full Indicators Table -->
+            <div class="bg-white rounded-[2rem] border border-stone-200 shadow-sm overflow-hidden">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-stone-50 border-b border-stone-200">
+                        <tr class="text-[10px] font-black text-stone-400 uppercase tracking-widest">
+                            <th class="p-4">指標</th>
+                            <th class="p-4 text-center">對比期 (2/28–3/27)</th>
+                            <th class="p-4 text-center">當期 (3/28–4/27)</th>
+                            <th class="p-4 text-center">變化</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-stone-100 font-medium">
+                        <tr>
+                            <td class="p-4 font-bold">總銷售額</td>
+                            <td class="p-4 text-center">$23,957.10</td>
+                            <td class="p-4 text-center">$18,236.30</td>
+                            <td class="p-4 text-center text-red-500">-23.9%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">日均銷售額</td>
+                            <td class="p-4 text-center">$855.25 /天</td>
+                            <td class="p-4 text-center">$588.27 /天</td>
+                            <td class="p-4 text-center text-red-500">-31.2%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">訂單數量</td>
+                            <td class="p-4 text-center">47 單</td>
+                            <td class="p-4 text-center">46 單</td>
+                            <td class="p-4 text-center text-red-500">-2.1%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">日均訂單數</td>
+                            <td class="p-4 text-center">1.68 /天</td>
+                            <td class="p-4 text-center">1.48 /天</td>
+                            <td class="p-4 text-center text-red-500">-11.9%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">平均訂單價值 (AOV)</td>
+                            <td class="p-4 text-center">$492.60</td>
+                            <td class="p-4 text-center">$373.62</td>
+                            <td class="p-4 text-center text-red-500">-24.2%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">退貨率</td>
+                            <td class="p-4 text-center">0%</td>
+                            <td class="p-4 text-center">0%</td>
+                            <td class="p-4 text-center text-emerald-600">✅ 持平</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">新客戶數</td>
+                            <td class="p-4 text-center">36 人</td>
+                            <td class="p-4 text-center">36 人</td>
+                            <td class="p-4 text-center text-emerald-600">✅ 持平</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">回購客戶數</td>
+                            <td class="p-4 text-center">10 人</td>
+                            <td class="p-4 text-center">10 人</td>
+                            <td class="p-4 text-center text-emerald-600">✅ 持平</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">回購客戶比例</td>
+                            <td class="p-4 text-center">22.7%</td>
+                            <td class="p-4 text-center">21.7%</td>
+                            <td class="p-4 text-center text-red-500">-1.0pp</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">折扣金額</td>
+                            <td class="p-4 text-center">$607.90</td>
+                            <td class="p-4 text-center">$726.70</td>
+                            <td class="p-4 text-center text-red-500">+19.5%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">運費收入</td>
+                            <td class="p-4 text-center">$805.00</td>
+                            <td class="p-4 text-center">$1,050.00</td>
+                            <td class="p-4 text-center text-emerald-600">+30.4%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">淨銷售額</td>
+                            <td class="p-4 text-center">$23,152.10</td>
+                            <td class="p-4 text-center">$17,186.30</td>
+                            <td class="p-4 text-center text-red-500">-25.8%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">毛銷售額</td>
+                            <td class="p-4 text-center">$23,760.00</td>
+                            <td class="p-4 text-center">$17,913.00</td>
+                            <td class="p-4 text-center text-red-500">-24.6%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PART 2: TRAFFIC & FUNNEL COMPARISON -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Traffic Sources Comparison -->
+            <div class="bg-white p-8 rounded-[2rem] border border-stone-200 shadow-sm flex flex-col">
+                <h3 class="text-xl font-bold serif mb-6">流量來源對比 (Sessions)</h3>
+                <div class="chart-container">
+                    <canvas id="trafficComparisonChart"></canvas>
+                </div>
+                <div class="mt-8 space-y-3 text-xs">
+                    <p class="font-bold text-stone-700">整體流量：</p>
+                    <p class="text-stone-600">
+                        對比期 5,172（184.7 /天）→ 當期 5,495（177.3 /天），日均 -4.0%，顯示整體曝光略有回落但並非營收下跌主因。
+                    </p>
+                    <div class="grid grid-cols-2 gap-2 text-[10px] font-black text-stone-500 uppercase">
+                        <div>Social 佔比：29.3% → 29.2%（持平）</div>
+                        <div>Direct 佔比：52.8% → 53.9%（持平略升）</div>
+                        <div>Search 佔比：16.3% → 15.9%（輕微回落）</div>
+                        <div>Email：3 → 8 Sessions（絕對值仍極小）</div>
+                    </div>
+                    <p class="mt-2 text-[10px] text-emerald-700 font-bold">
+                        Unknown Sessions 由 82 → 40（-51.2%），UTM 歸因覆蓋持續改善。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Funnel Logic -->
+            <div class="bg-stone-800 text-white p-8 rounded-[2rem] shadow-xl space-y-8">
+                <h3 class="text-xl font-bold serif">轉化漏斗對比</h3>
+                <div class="space-y-6 text-sm">
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl">
+                        <span>整體轉化率 CVR</span>
+                        <div class="text-right">
+                            <p class="font-bold text-red-300">0.80% (當期)</p>
+                            <p class="text-[10px] opacity-60">對比期: 0.87%</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl">
+                        <span>加入購物車率</span>
+                        <div class="text-right">
+                            <p class="font-bold text-emerald-400">2.98% (當期)</p>
+                            <p class="text-[10px] opacity-60">對比期: 2.90%</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl">
+                        <span>到達結帳次數</span>
+                        <div class="text-right">
+                            <p class="font-bold text-emerald-400">132 次 (當期)</p>
+                            <p class="text-[10px] opacity-60">對比期: 117 次</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl">
+                        <span>完成結帳次數</span>
+                        <div class="text-right">
+                            <p class="font-bold text-stone-50">44 次 (當期)</p>
+                            <p class="text-[10px] opacity-60">對比期: 45 次</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-white/5 border border-red-500/30 rounded-xl">
+                        <span>購物車放棄率</span>
+                        <div class="text-right">
+                            <p class="font-bold text-red-300">66.7% (當期)</p>
+                            <p class="text-[10px] opacity-60">對比期: 61.5%</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs italic text-stone-400 leading-relaxed font-medium">
+                    🔍 轉化洞察：產品吸引力足以推動更多加入購物車（Add-to-cart 上升），但高達 66–67% 的購物車放棄率逼近全球電商平均 70–72% 水平，顯示真正的流失點集中在結帳階段（運費、付款流程、信任感等）。 [web:6][web:18]
+                </p>
+            </div>
+        </section>
+
+        <!-- PART 3: CHANNEL REVENUE & PRODUCT COMPARISON -->
+        <section class="space-y-10">
+            <h3 class="text-2xl font-bold serif">渠道與產品動態對比</h3>
+            
+            <!-- Channel Revenue Table -->
+            <div class="bg-white rounded-[2rem] border border-stone-200 overflow-hidden shadow-sm">
+                <div class="p-6 bg-stone-50 border-b border-stone-100 flex justify-between items-center">
+                    <p class="font-black text-stone-400 text-[10px] uppercase tracking-widest">各渠道營收變動分析</p>
+                    <span class="text-emerald-700 text-[10px] font-bold">Instagram 強勢回歸・新渠道萌芽</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-stone-50 border-b border-stone-200">
+                            <tr class="font-black text-stone-500 uppercase tracking-widest">
+                                <th class="p-4">來源名稱</th>
+                                <th class="p-4 text-center">對比期銷售</th>
+                                <th class="p-4 text-center">對比期訂單</th>
+                                <th class="p-4 text-center">對比期 AOV</th>
+                                <th class="p-4 text-center">當期銷售</th>
+                                <th class="p-4 text-center">當期訂單</th>
+                                <th class="p-4 text-center">當期 AOV</th>
+                                <th class="p-4 text-center">銷售變化</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-100">
+                            <tr>
+                                <td class="p-4 font-bold">Facebook</td>
+                                <td class="p-4 text-center">$7,288.80</td>
+                                <td class="p-4 text-center">13</td>
+                                <td class="p-4 text-center">$541.83</td>
+                                <td class="p-4 text-center font-bold">$4,308.60</td>
+                                <td class="p-4 text-center">11</td>
+                                <td class="p-4 text-center">$366.24</td>
+                                <td class="p-4 text-center text-red-500 font-bold">-40.9%</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Google</td>
+                                <td class="p-4 text-center">$5,037.20</td>
+                                <td class="p-4 text-center">13</td>
+                                <td class="p-4 text-center">$363.25</td>
+                                <td class="p-4 text-center font-bold">$3,965.50</td>
+                                <td class="p-4 text-center">10</td>
+                                <td class="p-4 text-center">$368.55</td>
+                                <td class="p-4 text-center text-red-500">-21.3%</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">未知 / 直接</td>
+                                <td class="p-4 text-center">$5,053.60</td>
+                                <td class="p-4 text-center">10</td>
+                                <td class="p-4 text-center">$491.36</td>
+                                <td class="p-4 text-center font-bold">$2,794.70</td>
+                                <td class="p-4 text-center">8</td>
+                                <td class="p-4 text-center">$323.09</td>
+                                <td class="p-4 text-center text-red-500 font-bold">-44.7%</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">fragrancehousehk</td>
+                                <td class="p-4 text-center">$3,781.80</td>
+                                <td class="p-4 text-center">7</td>
+                                <td class="p-4 text-center">$530.26</td>
+                                <td class="p-4 text-center font-bold">$2,391.40</td>
+                                <td class="p-4 text-center">7</td>
+                                <td class="p-4 text-center">$316.63</td>
+                                <td class="p-4 text-center text-red-500">-36.8%</td>
+                            </tr>
+                            <tr class="bg-emerald-50/20">
+                                <td class="p-4 font-bold text-emerald-800">Instagram</td>
+                                <td class="p-4 text-center">$981.10</td>
+                                <td class="p-4 text-center">2</td>
+                                <td class="p-4 text-center">$473.05</td>
+                                <td class="p-4 text-center font-bold">$2,760.10</td>
+                                <td class="p-4 text-center">6</td>
+                                <td class="p-4 text-center">$448.35</td>
+                                <td class="p-4 text-center text-emerald-600 font-black">+181.3%</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Shopify</td>
+                                <td class="p-4 text-center">$1,814.60</td>
+                                <td class="p-4 text-center">2</td>
+                                <td class="p-4 text-center">$907.30</td>
+                                <td class="p-4 text-center font-bold">$964.40</td>
+                                <td class="p-4 text-center">2</td>
+                                <td class="p-4 text-center">$464.70</td>
+                                <td class="p-4 text-center text-red-500">-46.8%</td>
+                            </tr>
+                            <tr class="bg-emerald-50/20">
+                                <td class="p-4 font-bold text-emerald-800">Yahoo</td>
+                                <td class="p-4 text-center">—</td>
+                                <td class="p-4 text-center">—</td>
+                                <td class="p-4 text-center">—</td>
+                                <td class="p-4 text-center font-bold">$547.60</td>
+                                <td class="p-4 text-center">1</td>
+                                <td class="p-4 text-center">$547.60</td>
+                                <td class="p-4 text-center text-emerald-600 font-bold">新渠道</td>
+                            </tr>
+                            <tr class="bg-emerald-50/20">
+                                <td class="p-4 font-bold text-emerald-800">Android</td>
+                                <td class="p-4 text-center">—</td>
+                                <td class="p-4 text-center">—</td>
+                                <td class="p-4 text-center">—</td>
+                                <td class="p-4 text-center font-bold">$504.00</td>
+                                <td class="p-4 text-center">1</td>
+                                <td class="p-4 text-center">$504.00</td>
+                                <td class="p-4 text-center text-emerald-600 font-bold">新渠道</td>
+                            </tr>
+                            <tr class="bg-stone-50">
+                                <td class="p-4 font-bold opacity-60">合計</td>
+                                <td class="p-4 text-center opacity-60">$23,957.10</td>
+                                <td class="p-4 text-center opacity-60">47</td>
+                                <td class="p-4 text-center opacity-60">$492.60</td>
+                                <td class="p-4 text-center opacity-60">$18,236.30</td>
+                                <td class="p-4 text-center opacity-60">46</td>
+                                <td class="p-4 text-center opacity-60">$373.62</td>
+                                <td class="p-4 text-center text-red-500 opacity-60">-23.9%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Product Comparison -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="metric-card border-amber-200 bg-amber-50/10">
+                    <h4 class="font-bold serif text-stone-800 mb-6 flex justify-between">
+                        <span>產品排行對比</span>
+                        <span class="text-[10px] bg-stone-800 text-white px-2 py-0.5 rounded">White Musk IP 延伸爆發</span>
+                    </h4>
+                    <div class="space-y-4 text-xs">
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100">
+                            <span class="font-bold">Eau de Parfum | White Musk</span>
+                            <span class="text-red-500 font-black">▼ 53.3% ($2,004)</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100">
+                            <span class="font-bold">Car Fragrance | White Musk</span>
+                            <span class="text-emerald-600 font-black">🆕 新晉 #2 ($1,782)</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100">
+                            <span class="font-bold">Reeds Diffuser | White Musk</span>
+                            <span class="text-emerald-600 font-black">🆕 新晉 #3 ($1,664)</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100">
+                            <span class="font-bold">Car Fragrance Refill Set (3/6 pack)</span>
+                            <span class="text-emerald-600 font-black">🆕 #4 ($1,044)</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-amber-200 bg-amber-50">
+                            <span class="font-bold">Summer Limited Editions Gift Set</span>
+                            <span class="text-emerald-700 font-black">🆕 #5 ($1,030)</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100 opacity-60">
+                            <span class="font-bold">Reeds Diffuser | Lavender & Sandalwood</span>
+                            <span class="text-red-500 font-black">退出前 10</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100 opacity-60">
+                            <span class="font-bold">Top-Rated Perfume Set | Pavilion White Tea</span>
+                            <span class="text-red-500 font-black">退出前 10</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100 opacity-60">
+                            <span class="font-bold">Car Fragrance Set | Woody & Earthy</span>
+                            <span class="text-red-500 font-black">退出前 10</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100">
+                            <span class="font-bold">Layered Florals | Orchid Nap & Rose</span>
+                            <span class="text-emerald-600 font-black">🆕 #7 ($515)</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm border border-stone-100">
+                            <span class="font-bold">Eau de Parfum | Ocean & Cedarwood</span>
+                            <span class="text-emerald-600 font-black">🆕 #8 ($506.60)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-3xl border border-stone-200 text-xs italic space-y-4">
+                    <p class="font-bold text-stone-800 mb-2">📋 季節性與產品結構變化：</p>
+                    <p>• <b>高單價 EDP / 禮盒邊緣化：</b>White Musk EDP 雖仍為 #1，但銷售腰斬；其他高價套裝全面退出前 10，直接拉低整體 AOV。</p>
+                    <p>• <b>White Musk 全線延伸成功：</b>車用香氛、擴香、補充裝同步打入前 5，顯示品牌 IP 能見度高，但目前以「拆件」為主，仍有 Bundle 升級空間。</p>
+                    <p>• <b>季節性新品迅速起飛：</b>Summer Limited Editions Gift Set 一上架即衝入 #5，適合作為拉升 AOV 的主打投放素材。</p>
+                    <p>• <b>香調多元化：</b>Orchid、Ocean 等新香調開始進入榜單，長期有利於擴大香型覆蓋，但需要以「組合化」方式把單價拉回 450–550 區間。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 4: INSIGHTS & ACTION PLAN (UPDATED) -->
+        <section class="bg-stone-900 text-white p-10 md:p-20 rounded-[4rem] shadow-2xl relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-5xl font-bold serif text-red-400 tracking-tight mb-16">對比洞察與行動建議（最新）</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-amber-300 font-black uppercase text-xs tracking-widest mb-4">🔍 深度診斷 (Diagnostic)</h4>
+                            <ul class="text-sm space-y-4 font-medium opacity-90">
+                                <li class="flex gap-4">
+                                    <span class="text-amber-500 font-black">01.</span>
+                                    <span>AOV 持續下移：營收跌幅 (-23.9%) 遠大於訂單跌幅 (-2.1%)，日均銷售額 -31.2%，顯示客人由「高單價禮盒 / 套裝」轉向「單件入門」的消費模式，是本期營收下滑的主因。</span>
+                                </li>
+                                <li class="flex gap-4">
+                                    <span class="text-amber-500 font-black">02.</span>
+                                    <span>廣播缺席效應延續：你提到本期沒有 SleekFlow 廣播，配合 Direct / Unknown 及 fragrancehousehk 渠道合計逾 40% 跌幅，可推斷原本由廣播帶來的高客單回購明顯減弱。</span>
+                                </li>
+                                <li class="flex gap-4">
+                                    <span class="text-amber-500 font-black">03.</span>
+                                    <span>漏斗卡在「結帳」而非「興趣」：加入購物車率微升至 2.98%，到達結帳次數亦成長，但購物車放棄率卻升至 66.7%，接近全球平均約 70–72% 的棄單水準，代表客人「想買」但在最後一步被運費、付款方式或 UX 阻礙。 [web:6][web:18]</span>
+                                </li>
+                                <li class="flex gap-4">
+                                    <span class="text-amber-500 font-black">04.</span>
+                                    <span>渠道結構重心轉移：Facebook、Direct 等高 AOV 渠道大幅降溫，而 Instagram 則強勢成長 +181.3%，顯示內容與 IP 在 IG 上的吸引力更高，未來應設計「IG → 高客單 Bundle」的對應路線。</span>
+                                </li>
+                                <li class="flex gap-4">
+                                    <span class="text-amber-500 font-black">05.</span>
+                                    <span>White Musk 品牌資產被「拆件消費」：White Musk 相關車用、擴香、補充裝表現亮眼，但多以單件或小組合售出，未被打包成高價 Bundle，令本可集中在高客單的 IP，被分散成多個低客單成交。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-red-400 font-black uppercase text-xs tracking-widest mb-4">🎯 行動建議 (Action Plan)</h4>
+                            <div class="grid grid-cols-1 gap-6">
+                                <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                                    <p class="text-xs font-black text-amber-500 mb-2">🚨 緊急（本週）</p>
+                                    <p class="text-sm">
+                                        1）<b>立即重啟 SleekFlow 廣播：</b>規劃一檔「White Musk 全系列禮遇 + Summer Gift Set」主題，鎖定 2–3 月曾購買 White Musk 或高單價套裝的既有客，提供限時升級組合／加價購，把原本被拆散的 White Musk 消費重新包裝成高客單交易。 [web:21][web:27]<br>
+                                        2）<b>設置購物車放棄自動化：</b>針對已到達結帳但未完成付款的用戶，在 1–3 小時內透過 WhatsApp / Email 發送提醒＋小額激勵（如免運或小額折扣），以當期 AOV 約 $374 計算，即使只挽回 10–15% 的 88 次流失，也有機會回收約 $3,000–$5,000 的潛在營收。 [web:17][web:23]
+                                    </p>
+                                </div>
+
+                                <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                                    <p class="text-xs font-black text-emerald-500 mb-2">📈 短期（未來 2 週）</p>
+                                    <p class="text-sm">
+                                        3）<b>放大 Instagram 投放＋導向高客單頁面：</b>沿用現有有效內容與風格，但把 IG 廣告／Bio link 的 Landing Page 改為 White Musk / Summer Gift Set 的 Bundle 頁，而非單一產品頁，將目前 IG 已驗證的高互動轉化為高客單營收。 [web:24][web:30]<br>
+                                        4）<b>設計「White Musk Universe」Bundle：</b>以 EDP + Reeds Diffuser + Car Fragrance + Refill 設計 2–3 個價格梯度（例如 Starter、小家庭、全套收藏），目標把平均客單價拉回 $450–$550 區間，同時讓客人感覺是一次建立「完整香氛世界」而非零散加購。
+                                    </p>
+                                </div>
+
+                                <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                                    <p class="text-xs font-black text-red-400 mb-2">🗓️ 中期（未來 4 週）</p>
+                                    <p class="text-sm">
+                                        5）<b>建立固定廣播節奏：</b>每月至少 2 檔：月初主打「新品／季節主題」、月中主打「VIP 回購專屬方案」，避免營收過度依賴單一波段，並讓 Direct / fragrancehousehk 渠道維持穩定高客單輸出。 [web:21]<br>
+                                        6）<b>優化結帳 UX（依 Shopify 最佳實踐）：</b>檢查是否啟用最新的一頁式結帳、可選 Guest Checkout、清楚展示運費與稅項、支援常用支付方式（Apple Pay / PayPal / 信用卡）以及地址自動填寫，這些都被證實能顯著降低棄單率並提升完成率。 [web:22][web:25][web:28]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-stone-300 font-black uppercase text-xs tracking-widest mb-4">📌 SleekFlow 廣播影響量化更新</h4>
+                            <p class="text-xs text-stone-300 leading-relaxed">
+                                將本期與對比期比較：日均銷售額差距約 $267／天，加上 Direct / Unknown 與 fragrancehousehk 渠道合計約 $3,600–$4,500 的營收跌幅，推論廣播缺席仍是本期營收下滑的關鍵因素之一。配合 IG 強勢成長，可以將「WhatsApp 廣播」與「Instagram 內容投放」視為雙核心，一邊激活既有客、一邊拉新，再用高客單 Bundle 承接兩端流量，把 AOV 拉回健康區間。 [web:21][web:27]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-stone-200 py-16 text-center">
+        <p class="serif font-bold text-stone-800 text-2xl tracking-[0.2em] uppercase mb-4">Fragrance House HK</p>
+        <p class="text-[10px] text-stone-400 font-black uppercase tracking-[0.4em] mb-8">Internal Business Intelligence Report • CONFIDENTIAL</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            const ctxTraffic = document.getElementById('trafficComparisonChart').getContext('2d');
+            new Chart(ctxTraffic, {
+                type: 'bar',
+                data: {
+                    labels: ['Social (社交)', 'Direct (直接)', 'Search (搜尋)'],
+                    datasets: [
+                        {
+                            label: '對比期 (2/28–3/27)',
+                            data: [1513, 2732, 842],
+                            backgroundColor: '#e7e5e4',
+                            borderRadius: 4
+                        },
+                        {
+                            label: '當期 (3/28–4/27)',
+                            data: [1606, 2965, 876],
+                            backgroundColor: '#44403c',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 10, weight: 'bold' } } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
